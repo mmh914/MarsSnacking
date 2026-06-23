@@ -4,7 +4,7 @@ const screenTitle = document.querySelector('#screenTitle');
 const breadcrumb = document.querySelector('#breadcrumb');
 const data = window.PRODUCT_DATA;
 
-const state = { brandId: null, sizeId: null };
+const state = { brandId: null, sizeId: null, itemId: null };
 
 function selectedBrand() {
   return data.brands.find((brand) => brand.id === state.brandId);
@@ -14,13 +14,17 @@ function selectedSize() {
   return selectedBrand()?.sizes.find((size) => size.id === state.sizeId);
 }
 
+function selectedItem() {
+  return selectedSize()?.items.find((item) => item.id === state.itemId);
+}
+
 function setState(nextState) {
   Object.assign(state, nextState);
   render();
 }
 
 function updateHeader() {
-  const parts = [selectedBrand()?.name, selectedSize()?.label].filter(Boolean);
+  const parts = [selectedBrand()?.name, selectedSize()?.label, selectedItem()?.name].filter(Boolean);
   const isHome = !state.brandId;
   backButton.hidden = isHome;
   screenTitle.textContent = isHome ? 'Selling Sheet' : parts[parts.length - 1];
@@ -66,64 +70,73 @@ function imageMarkup(item) {
   </div>`;
 }
 
-function orderRows(item) {
-  return Object.entries(data.displayTypes).map(([key, label]) => {
-    const amount = item.orderSuggestions[key];
-    return `<div class="order-row ${amount ? '' : 'muted'}"><span>${label}</span><strong>${amount ? `${amount} cases` : '—'}</strong></div>`;
-  }).join('');
-}
-
 function renderItems() {
   const brand = selectedBrand();
   const size = selectedSize();
-  app.innerHTML = `<section class="items-board" style="--brand:${brand.color};--accent:${brand.accent}">
-    ${size.items.map((item) => `<article class="selling-item-card">
-      <div class="selling-item-top">
-        ${imageMarkup(item)}
-        <div class="selling-item-copy">
-          <p class="eyebrow">${brand.name} • ${size.label}</p>
-          <h2>${item.name}</h2>
-          <dl class="facts compact-facts">
-            <div><dt>UPC</dt><dd>${item.upc}</dd></div>
-            <div><dt>Walmart item #</dt><dd>${item.walmartItemNumber}</dd></div>
-          </dl>
+  app.innerHTML = `<section class="grid item-grid">
+    ${size.items.map((item) => `<button class="item-card" style="--brand:${brand.color};--accent:${brand.accent}" type="button" data-action="item:${item.id}">
+      ${imageMarkup(item)}
+      <span class="card-title">${item.name}</span>
+      <span class="card-subtitle">UPC ${item.upc}</span>
+    </button>`).join('')}
+  </section>`;
+}
+
+function renderDetail() {
+  const brand = selectedBrand();
+  const size = selectedSize();
+  const item = selectedItem();
+  app.innerHTML = `<article class="detail-panel" style="--brand:${brand.color};--accent:${brand.accent}">
+    <section class="detail-hero">
+      ${imageMarkup(item)}
+      <div class="detail-copy">
+        <p class="eyebrow">${brand.name} • ${size.label}</p>
+        <h2>${item.name}</h2>
+        <dl class="facts">
+          <div><dt>UPC</dt><dd>${item.upc}</dd></div>
+          <div><dt>Walmart item #</dt><dd>${item.walmartItemNumber}</dd></div>
+        </dl>
+      </div>
+    </section>
+    <section class="detail-grid">
+      <div class="barcode-card">
+        <h3>Barcode</h3>
+        <div id="barcodeTarget" class="barcode-target"></div>
+      </div>
+      <div class="orders-card">
+        <h3>Suggested order amounts</h3>
+        <div class="order-list">
+          ${Object.entries(data.displayTypes).map(([key, label]) => {
+            const amount = item.orderSuggestions[key];
+            return `<div class="order-row ${amount ? '' : 'muted'}"><span>${label}</span><strong>${amount ? `${amount} cases` : '—'}</strong></div>`;
+          }).join('')}
         </div>
       </div>
-      <div class="selling-item-bottom">
-        <section class="barcode-card">
-          <h3>Barcode</h3>
-          <div class="barcode-target" data-upc="${item.upc}"></div>
-        </section>
-        <section class="orders-card">
-          <h3>Suggested order amounts</h3>
-          <div class="order-list">${orderRows(item)}</div>
-        </section>
-      </div>
-    </article>`).join('')}
-  </section>`;
-
-  document.querySelectorAll('[data-upc]').forEach((target) => {
-    window.renderUpcBarcode(target, target.dataset.upc);
-  });
+    </section>
+  </article>`;
+  window.renderUpcBarcode(document.querySelector('#barcodeTarget'), item.upc);
 }
 
 function render() {
   updateHeader();
   if (!state.brandId) renderHome();
   else if (!state.sizeId) renderSizes();
-  else renderItems();
+  else if (!state.itemId) renderItems();
+  else renderDetail();
 }
 
 app.addEventListener('click', (event) => {
   const control = event.target.closest('[data-action]');
   if (!control) return;
   const [type, id] = control.dataset.action.split(':');
-  if (type === 'brand') setState({ brandId: id, sizeId: null });
-  if (type === 'size') setState({ sizeId: id });
+  if (type === 'brand') setState({ brandId: id, sizeId: null, itemId: null });
+  if (type === 'size') setState({ sizeId: id, itemId: null });
+  if (type === 'item') setState({ itemId: id });
 });
 
 backButton.addEventListener('click', () => {
-  if (state.sizeId) setState({ sizeId: null });
+  if (state.itemId) setState({ itemId: null });
+  else if (state.sizeId) setState({ sizeId: null });
   else setState({ brandId: null });
 });
 

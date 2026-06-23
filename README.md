@@ -1,12 +1,12 @@
 # Back-to-School Selling Sheet
 
-A static, browser-based selling tool for GitHub Pages. It uses plain HTML, CSS, and JavaScript, loads product data immediately, and keeps navigation state in the browser for instant Brand → Size → Items switching across three screens.
+A static, browser-based selling tool for GitHub Pages. It uses plain HTML, CSS, and JavaScript, loads product data immediately, and keeps navigation state in the browser for instant Brand → Size → Item switching.
 
 ## Files
 
 - `index.html` - single-page app shell.
 - `styles.css` - iPad-friendly responsive layout and retail card styling.
-- `app.js` - DOM rendering, three-screen navigation state, and barcode hookup on the item listing screen.
+- `app.js` - DOM rendering, navigation state, and barcode hookup.
 - `products.js` - editable product data for brands, sizes, items, UPCs, Walmart item numbers, and order quantities.
 - `assets/products/` - place final product images here.
 - `assets/vendor/upc-barcode.js` - local dependency-free UPC-A SVG barcode renderer.
@@ -80,4 +80,4 @@ Barcode rendering uses the local script `assets/vendor/upc-barcode.js`. It is a 
 4. Set the source to the branch and folder that contain `index.html` (usually the repository root on the `main` branch).
 5. Save. GitHub Pages will publish the static app URL after the site builds.
 
-No build step, server, or backend is required. The app has three user-facing screens: brand selection, size selection, and the item selling sheet for the selected size.
+No build step, server, or backend is required.

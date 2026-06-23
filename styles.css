@@ -75,7 +75,7 @@ h1 { font-size: clamp(1.8rem, 4vw, 3.3rem); }
   gap: clamp(1rem, 2vw, 1.5rem);
 }
 
-.card {
+.card, .item-card {
   min-height: 13rem;
   padding: 1.4rem;
   border: 2px solid transparent;
@@ -88,7 +88,7 @@ h1 { font-size: clamp(1.8rem, 4vw, 3.3rem); }
   touch-action: manipulation;
 }
 
-.card:focus-visible, .back-button:focus-visible {
+.card:focus-visible, .item-card:focus-visible, .back-button:focus-visible {
   outline: 5px solid #2563eb;
   outline-offset: 4px;
 }
@@ -107,6 +107,11 @@ h1 { font-size: clamp(1.8rem, 4vw, 3.3rem); }
   border-top: 1.25rem solid var(--brand);
 }
 
+.item-card {
+  display: grid;
+  gap: 1rem;
+  border-bottom: 0.7rem solid var(--accent);
+}
 
 .card-title {
   display: block;
@@ -148,35 +153,27 @@ h1 { font-size: clamp(1.8rem, 4vw, 3.3rem); }
   text-align: center;
 }
 
-.items-board {
+.detail-panel {
   display: grid;
   gap: 1.5rem;
 }
 
-.selling-item-card {
+.detail-hero, .detail-grid {
   display: grid;
-  gap: 1.25rem;
-  padding: clamp(1rem, 2vw, 1.5rem);
-  border-top: 0.85rem solid var(--brand);
+  grid-template-columns: minmax(18rem, 0.9fr) 1.1fr;
+  gap: 1.5rem;
+}
+
+.detail-hero, .barcode-card, .orders-card {
+  padding: clamp(1.2rem, 2vw, 2rem);
   border-radius: 1.5rem;
   background: var(--panel);
   box-shadow: var(--shadow);
 }
 
-.selling-item-top, .selling-item-bottom {
-  display: grid;
-  grid-template-columns: minmax(15rem, 0.75fr) 1.25fr;
-  gap: 1.25rem;
-}
+.detail-hero { border-top: 1rem solid var(--brand); }
 
-.barcode-card, .orders-card {
-  padding: clamp(1rem, 1.8vw, 1.5rem);
-  border-radius: 1.25rem;
-  background: #fff;
-  border: 1px solid var(--line);
-}
-
-.selling-item-copy h2 { font-size: clamp(1.8rem, 4vw, 3.4rem); line-height: 1; }
+.detail-copy h2 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1; }
 
 .facts {
   display: grid;
@@ -192,7 +189,6 @@ h1 { font-size: clamp(1.8rem, 4vw, 3.3rem); }
 
 dt { color: var(--muted); font-weight: 900; text-transform: uppercase; }
 dd { margin: 0.2rem 0 0; font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 900; }
-.compact-facts dd { font-size: clamp(1.15rem, 2.2vw, 1.75rem); }
 
 .barcode-target { margin-top: 1rem; }
 .barcode-svg { width: 100%; max-height: 13rem; border: 1px solid var(--line); }
@@ -214,7 +210,7 @@ dd { margin: 0.2rem 0 0; font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 900
 
 @media (max-width: 1000px) {
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .selling-item-top, .selling-item-bottom { grid-template-columns: 1fr; }
+  .detail-hero, .detail-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 620px) {
