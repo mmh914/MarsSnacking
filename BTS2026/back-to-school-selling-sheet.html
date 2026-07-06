@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -9,18 +9,28 @@
 <body>
   <header class="app-header">
     <a class="splash-back-button" href="../index.html" aria-label="Back to splash page">Back</a>
-    <button id="backButton" class="back-button" type="button" hidden>← Back</button>
+    <button id="backButton" class="back-button" type="button" hidden>&larr; Back</button>
     <div>
-      <p class="eyebrow">Mars Snacking • Back-to-School</p>
+      <p class="eyebrow">Mars Snacking &bull; Back-to-School</p>
       <h1 id="screenTitle">Selling Sheet</h1>
       <p id="breadcrumb" class="breadcrumb">Choose a brand</p>
     </div>
   </header>
 
   <main id="app" class="app-shell" aria-live="polite"></main>
+  <div id="barcodeModal" class="barcode-modal" hidden>
+    <button class="modal-backdrop" type="button" aria-label="Close expanded barcode"></button>
+    <article class="expanded-card" role="dialog" aria-modal="true" aria-labelledby="expandedName">
+      <button id="closeModal" class="modal-close" type="button" aria-label="Close expanded barcode">X</button>
+      <div id="expandedImage" class="expanded-image"></div>
+      <p id="expandedName" class="expanded-name"></p>
+      <div id="expandedBarcode" class="expanded-barcode"></div>
+      <div id="expandedUpc" class="expanded-upc"></div>
+    </article>
+  </div>
 
-  <script src="products.js"></script>
-  <script src="assets/vendor/upc-barcode.js"></script>
+  <script src="back-to-school-items.js"></script>
+  <script src="../shared/barcode-cards.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
