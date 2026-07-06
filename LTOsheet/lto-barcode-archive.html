@@ -9,6 +9,7 @@
 <body>
   <header>
     <div class="top-row">
+      <a class="splash-back-button" href="../index.html" aria-label="Back to splash page">Back</a>
       <h1>Limited Time Offer Barcode Archive</h1>
       <div class="brand-mark"><span class="k">Kellanova</span> | <span class="w">Walmart</span></div>
     </div>
@@ -19,6 +20,16 @@
   </header>
 
   <main id="app"></main>
+  <div id="barcodeModal" class="barcode-modal" hidden>
+    <button class="modal-backdrop" type="button" aria-label="Close expanded barcode"></button>
+    <article class="expanded-card" role="dialog" aria-modal="true" aria-labelledby="expandedName">
+      <button id="closeModal" class="modal-close" type="button" aria-label="Close expanded barcode">X</button>
+      <div id="expandedImage" class="expanded-image"></div>
+      <p id="expandedName" class="expanded-name"></p>
+      <div id="expandedBarcode" class="expanded-barcode"></div>
+      <div id="expandedUpc" class="expanded-upc"></div>
+    </article>
+  </div>
 
   <script src="lto-barcode-items.js"></script>
   <script>
@@ -88,36 +99,32 @@
       return d.length === 12 ? `${d[0]} ${d.slice(1,6)} ${d.slice(6,11)} ${d[11]}` : upc;
     }
 
-    function formatDate(dateString) {
-      const [year, month, day] = dateString.split("-").map(Number);
-      return new Date(year, month - 1, day).toLocaleDateString(undefined, {
-        year: "numeric", month: "long", day: "numeric"
-      });
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
     }
 
-    function groupByDate(itemList) {
-      return itemList.reduce((groups, item) => {
-        if (!groups[item.dateAdded]) groups[item.dateAdded] = [];
-        groups[item.dateAdded].push(item);
-        return groups;
-      }, {});
-    }
-
-    function cardTemplate(item) {
+    function cardTemplate(item, index) {
       const valid = isValidUpcA(item.upc);
       const barcode = /^\d{12}$/.test(cleanUpc(item.upc))
         ? renderBarcodeSvg(item.upc)
         : `<div class="missing-image">Invalid UPC</div>`;
+      const safeName = escapeHtml(item.name);
+      const safeImageSrc = escapeHtml(item.imageSrc || "");
 
       return `
-        <article class="item-card">
+        <article class="item-card archive-card" tabindex="0" role="button" data-item-index="${index}" aria-label="Expand barcode for ${safeName}">
           <div class="item-image-wrap">
             ${item.imageSrc
-              ? `<img class="item-image" src="${item.imageSrc}" alt="${item.name}" onerror="this.replaceWith(Object.assign(document.createElement('div'), {className:'missing-image', textContent:'Image not found'}))">`
+              ? `<img class="item-image" src="${safeImageSrc}" alt="${safeName}" onerror="this.replaceWith(Object.assign(document.createElement('div'), {className:'missing-image', textContent:'Image not found'}))">`
               : `<div class="missing-image">No image</div>`
             }
           </div>
-          <p class="item-name">${item.name}</p>
+          <p class="item-name">${safeName}</p>
           ${barcode}
           <div class="upc-text">${formatUpc(item.upc)}</div>
           <div class="meta">${valid ? "" : "Check digit warning"}</div>
@@ -142,20 +149,58 @@
         return;
       }
 
-      const groups = groupByDate(filtered);
-      const dates = Object.keys(groups).sort((a, b) => new Date(b) - new Date(a));
+      app.innerHTML = `
+        <div class="grid">
+          ${filtered.map((item, index) => cardTemplate(item, index)).join("")}
+        </div>
+      `;
 
-      app.innerHTML = dates.map(date => `
-        <section class="date-section">
-          <div class="date-heading"><h2>${formatDate(date)}</h2></div>
-          <div class="grid">
-            ${groups[date].map(cardTemplate).join("")}
-          </div>
-        </section>
-      `).join("");
+      app.querySelectorAll(".archive-card").forEach(card => {
+        card.addEventListener("click", () => openExpandedCard(filtered[Number(card.dataset.itemIndex)]));
+        card.addEventListener("keydown", event => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openExpandedCard(filtered[Number(card.dataset.itemIndex)]);
+          }
+        });
+      });
+    }
+
+    function openExpandedCard(item) {
+      const modal = document.getElementById("barcodeModal");
+      const image = document.getElementById("expandedImage");
+      const name = document.getElementById("expandedName");
+      const barcode = document.getElementById("expandedBarcode");
+      const upc = document.getElementById("expandedUpc");
+      const safeName = escapeHtml(item.name);
+      const safeImageSrc = escapeHtml(item.imageSrc || "");
+
+      image.innerHTML = item.imageSrc
+        ? `<img src="${safeImageSrc}" alt="${safeName}" onerror="this.replaceWith(Object.assign(document.createElement('div'), {className:'missing-image', textContent:'Image not found'}))">`
+        : `<div class="missing-image">No image</div>`;
+      name.textContent = item.name;
+      barcode.innerHTML = /^\d{12}$/.test(cleanUpc(item.upc))
+        ? renderBarcodeSvg(item.upc)
+        : `<div class="missing-image">Invalid UPC</div>`;
+      upc.textContent = formatUpc(item.upc);
+      modal.hidden = false;
+      document.body.classList.add("modal-open");
+      document.getElementById("closeModal").focus();
+    }
+
+    function closeExpandedCard() {
+      document.getElementById("barcodeModal").hidden = true;
+      document.body.classList.remove("modal-open");
     }
 
     document.getElementById("search").addEventListener("input", render);
+    document.getElementById("closeModal").addEventListener("click", closeExpandedCard);
+    document.querySelector(".modal-backdrop").addEventListener("click", closeExpandedCard);
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && !document.getElementById("barcodeModal").hidden) {
+        closeExpandedCard();
+      }
+    });
     render();
   </script>
 </body>
