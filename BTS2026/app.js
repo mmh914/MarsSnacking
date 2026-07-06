@@ -55,7 +55,7 @@ function setState(nextState) {
 function updateHeader() {
   const parts = [selectedBrand()?.name, selectedSize()?.label].filter(Boolean);
   const isHome = !state.brandId;
-  backButton.hidden = isHome;
+  backButton.setAttribute("aria-label", isHome ? "Back to splash page" : "Back to previous screen");
   screenTitle.textContent = isHome ? "Selling Sheet" : parts[parts.length - 1];
   breadcrumb.textContent = parts.length ? parts.join(" -> ") : "Choose a brand";
 }
@@ -119,7 +119,8 @@ app.addEventListener("click", (event) => {
 });
 
 backButton.addEventListener("click", () => {
-  if (state.sizeId) setState({ sizeId: null });
+  if (!state.brandId) window.location.href = "../index.html";
+  else if (state.sizeId) setState({ sizeId: null });
   else setState({ brandId: null });
 });
 
