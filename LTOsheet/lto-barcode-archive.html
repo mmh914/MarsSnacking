@@ -120,7 +120,7 @@
           <p class="item-name">${item.name}</p>
           ${barcode}
           <div class="upc-text">${formatUpc(item.upc)}</div>
-          <div class="meta">${valid ? "UPC-A" : "Check digit warning"}</div>
+          <div class="meta">${valid ? "" : "Check digit warning"}</div>
         </article>
       `;
     }
