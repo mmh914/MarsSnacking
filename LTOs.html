@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Walmart LTO Barcode Archive</title>
+  <style>
+    :root {
+      --bg: #f7f7f7;
+      --card: #ffffff;
+      --ink: #111;
+      --muted: #666;
+      --line: #d8d8d8;
+      --red: #bd0000;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(247, 247, 247, 0.96);
+      border-bottom: 3px solid #111;
+      padding: 14px 18px 12px;
+      backdrop-filter: blur(6px);
+    }
+
+    .top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.2rem, 2.5vw, 2rem);
+      background: var(--red);
+      color: white;
+      padding: 8px 28px;
+      border-radius: 5px;
+      border: 2px solid #8b0000;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.25);
+      letter-spacing: .2px;
+    }
+
+    .brand-mark {
+      font-weight: 700;
+      font-size: clamp(1rem, 2vw, 1.6rem);
+      white-space: nowrap;
+    }
+
+    .brand-mark .k { color: #d71920; }
+    .brand-mark .w { color: #0071ce; }
+
+    .controls {
+      max-width: 1500px;
+      margin: 12px auto 0;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    input[type="search"] {
+      width: min(520px, 100%);
+      padding: 10px 12px;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: white;
+    }
+
+    .count { color: var(--muted); font-size: .95rem; }
+
+    main {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 20px 18px 48px;
+    }
+
+    .date-section {
+      margin-bottom: 36px;
+    }
+
+    .date-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 18px 0 16px;
+    }
+
+    .date-heading h2 {
+      margin: 0;
+      font-size: 1.15rem;
+      color: #222;
+      white-space: nowrap;
+    }
+
+    .date-heading::after {
+      content: "";
+      height: 1px;
+      background: var(--line);
+      flex: 1;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 28px 34px;
+    }
+
+    .item-card {
+      background: var(--card);
+      border: 1px solid #e3e3e3;
+      border-radius: 10px;
+      padding: 14px 10px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 275px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.05);
+    }
+
+    .item-image-wrap {
+      width: 100%;
+      height: 112px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .item-image {
+      max-width: 135px;
+      max-height: 105px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .missing-image {
+      width: 120px;
+      height: 92px;
+      border: 2px dashed #bbb;
+      border-radius: 8px;
+      color: #777;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: .78rem;
+      padding: 8px;
+      background: #fafafa;
+    }
+
+    .item-name {
+      width: 100%;
+      text-align: center;
+      font-weight: 700;
+      font-size: .93rem;
+      line-height: 1.2;
+      min-height: 34px;
+      margin: 0 0 8px;
+    }
+
+    .barcode {
+      width: 100%;
+      max-width: 190px;
+      overflow: visible;
+    }
+
+    .upc-text {
+      font-family: "Courier New", monospace;
+      font-size: .88rem;
+      margin-top: 3px;
+      letter-spacing: .3px;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: .75rem;
+      margin-top: 4px;
+    }
+
+    .empty {
+      color: var(--muted);
+      font-size: 1rem;
+      padding: 30px 0;
+    }
+
+    @media (max-width: 700px) {
+      .top-row { flex-direction: column; align-items: stretch; }
+      h1 { text-align: center; padding-inline: 12px; }
+      .brand-mark { text-align: center; }
+      .controls { flex-direction: column; align-items: stretch; }
+      .grid { grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 18px; }
+      .item-card { min-height: 260px; }
+    }
+
+    @media print {
+      header { position: static; border-bottom: 2px solid #111; }
+      .controls { display: none; }
+      body { background: white; }
+      .item-card { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="top-row">
+      <h1>Limited Time Offer Barcode Archive</h1>
+      <div class="brand-mark"><span class="k">Kellanova</span> | <span class="w">Walmart</span></div>
+    </div>
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search item name or UPC..." />
+      <div id="count" class="count"></div>
+    </div>
+  </header>
+
+  <main id="app"></main>
+
+  <script>
+    // Add new items here. Newest dateAdded automatically appears first.
+    // Use a 12-digit UPC-A when possible. Hyphens/spaces are okay; they are stripped automatically.
+    const items = [
+      {
+        name: "Cheez-It Original LTO",
+        imageSrc: "images/cheez-it-original-lto.png",
+        upc: "024100124640",
+        dateAdded: "2025-01-15"
+      },
+      {
+        name: "Town House Dippers Original",
+        imageSrc: "images/town-house-dippers-original.png",
+        upc: "030100129936",
+        dateAdded: "2025-01-15"
+      },
+      {
+        name: "Cheez-It Loaded Baconator 12.4 oz",
+        imageSrc: "images/cheez-it-baconator.png",
+        upc: "024100124350",
+        dateAdded: "2025-01-15"
+      },
+      {
+        name: "Cheez-It Hot Honey",
+        imageSrc: "images/cheez-it-hot-honey.png",
+        upc: "024100125678",
+        dateAdded: "2025-01-15"
+      },
+      {
+        name: "Town House Game Day Dippers Original",
+        imageSrc: "images/town-house-gameday-dippers.png",
+        upc: "030100130239",
+        dateAdded: "2025-01-15"
+      },
+      {
+        name: "Zesta Minis Restaurant Style",
+        imageSrc: "images/zesta-minis.png",
+        upc: "030100130031",
+        dateAdded: "2025-01-15"
+      },
+      {
+        name: "Zesta Oyster Crackers",
+        imageSrc: "images/zesta-oyster-crackers.png",
+        upc: "030100130147",
+        dateAdded: "2025-01-15"
+      },
+      {
+        name: "Club Minis Cinnamon Sugar",
+        imageSrc: "images/club-minis-cinnamon-sugar.png",
+        upc: "030100129462",
+        dateAdded: "2025-01-15"
+      },
+      {
+        name: "Cracker Assortment 8 Pack",
+        imageSrc: "images/cracker-assortment-8-pack.png",
+        upc: "030100129967",
+        dateAdded: "2025-01-15"
+      },
+      {
+        name: "Pringles Mingles Cinnamon & Sugar",
+        imageSrc: "images/pringles-mingles-cinnamon-sugar.png",
+        upc: "038000328473",
+        dateAdded: "2025-01-15"
+      },
+      {
+        name: "Town House Holiday Dippers Original",
+        imageSrc: "images/town-house-holiday-dippers.png",
+        upc: "030100129912",
+        dateAdded: "2025-01-15"
+      },
+      {
+        name: "Pringles Mingles 10 Pack",
+        imageSrc: "images/pringles-mingles-10-pack.png",
+        upc: "038000308574",
+        dateAdded: "2025-01-15"
+      },
+      {
+        name: "Back to School Cheez-It 10 Pack",
+        imageSrc: "images/back-to-school-cheez-it-10-pack.png",
+        upc: "024100125647",
+        dateAdded: "2025-01-15"
+      },
+      {
+        name: "Back to School Pringles Snack Stacks 27 Pack",
+        imageSrc: "images/back-to-school-pringles-27-pack.png",
+        upc: "038000311390",
+        dateAdded: "2025-01-15"
+      },
+      {
+        name: "Pringles Snack Stacks Pizza 12 Cups",
+        imageSrc: "images/pringles-pizza-12-cups.png",
+        upc: "038000312571",
+        dateAdded: "2025-01-15"
+      },
+      {
+        name: "Pringles Snack Stacks Multipack",
+        imageSrc: "images/pringles-snack-stacks-multipack.png",
+        upc: "038000241789",
+        dateAdded: "2025-01-15"
+      }
+    ];
+
+    const LEFT_GUARD = "101";
+    const CENTER_GUARD = "01010";
+    const RIGHT_GUARD = "101";
+
+    const L_CODES = {
+      "0": "0001101", "1": "0011001", "2": "0010011", "3": "0111101", "4": "0100011",
+      "5": "0110001", "6": "0101111", "7": "0111011", "8": "0110111", "9": "0001011"
+    };
+
+    const R_CODES = {
+      "0": "1110010", "1": "1100110", "2": "1101100", "3": "1000010", "4": "1011100",
+      "5": "1001110", "6": "1010000", "7": "1000100", "8": "1001000", "9": "1110100"
+    };
+
+    function cleanUpc(upc) {
+      return String(upc).replace(/\D/g, "");
+    }
+
+    function isValidUpcA(upc) {
+      const digits = cleanUpc(upc);
+      if (!/^\d{12}$/.test(digits)) return false;
+      const body = digits.slice(0, 11).split("").map(Number);
+      const check = Number(digits[11]);
+      const sum = body.reduce((total, digit, index) => total + digit * (index % 2 === 0 ? 3 : 1), 0);
+      return (10 - (sum % 10)) % 10 === check;
+    }
+
+    function upcToBits(upc) {
+      const digits = cleanUpc(upc);
+      if (!/^\d{12}$/.test(digits)) throw new Error(`UPC must be 12 digits: ${upc}`);
+      const left = digits.slice(0, 6).split("").map(d => L_CODES[d]).join("");
+      const right = digits.slice(6).split("").map(d => R_CODES[d]).join("");
+      return LEFT_GUARD + left + CENTER_GUARD + right + RIGHT_GUARD;
+    }
+
+    function renderBarcodeSvg(upc) {
+      const digits = cleanUpc(upc);
+      const bits = upcToBits(digits);
+      const moduleWidth = 2;
+      const barHeight = 72;
+      const guardHeight = 82;
+      const quiet = 10;
+      const width = bits.length * moduleWidth + quiet * 2;
+      const height = 104;
+
+      let rects = "";
+      for (let i = 0; i < bits.length; i++) {
+        if (bits[i] === "1") {
+          const inGuard = i < 3 || (i >= 45 && i < 50) || i >= 92;
+          rects += `<rect x="${quiet + i * moduleWidth}" y="0" width="${moduleWidth}" height="${inGuard ? guardHeight : barHeight}" />`;
+        }
+      }
+
+      return `
+        <svg class="barcode" viewBox="0 0 ${width} ${height}" role="img" aria-label="UPC ${digits}">
+          <rect width="100%" height="100%" fill="white"></rect>
+          <g fill="black">${rects}</g>
+        </svg>
+      `;
+    }
+
+    function formatUpc(upc) {
+      const d = cleanUpc(upc);
+      return d.length === 12 ? `${d[0]} ${d.slice(1,6)} ${d.slice(6,11)} ${d[11]}` : upc;
+    }
+
+    function formatDate(dateString) {
+      const [year, month, day] = dateString.split("-").map(Number);
+      return new Date(year, month - 1, day).toLocaleDateString(undefined, {
+        year: "numeric", month: "long", day: "numeric"
+      });
+    }
+
+    function groupByDate(itemList) {
+      return itemList.reduce((groups, item) => {
+        if (!groups[item.dateAdded]) groups[item.dateAdded] = [];
+        groups[item.dateAdded].push(item);
+        return groups;
+      }, {});
+    }
+
+    function cardTemplate(item) {
+      const valid = isValidUpcA(item.upc);
+      const barcode = /^\d{12}$/.test(cleanUpc(item.upc))
+        ? renderBarcodeSvg(item.upc)
+        : `<div class="missing-image">Invalid UPC</div>`;
+
+      return `
+        <article class="item-card">
+          <div class="item-image-wrap">
+            ${item.imageSrc
+              ? `<img class="item-image" src="${item.imageSrc}" alt="${item.name}" onerror="this.replaceWith(Object.assign(document.createElement('div'), {className:'missing-image', textContent:'Image not found'}))">`
+              : `<div class="missing-image">No image</div>`
+            }
+          </div>
+          <p class="item-name">${item.name}</p>
+          ${barcode}
+          <div class="upc-text">${formatUpc(item.upc)}</div>
+          <div class="meta">${valid ? "UPC-A" : "Check digit warning"}</div>
+        </article>
+      `;
+    }
+
+    function render() {
+      const app = document.getElementById("app");
+      const q = document.getElementById("search").value.trim().toLowerCase();
+      const filtered = items
+        .filter(item => {
+          const haystack = `${item.name} ${cleanUpc(item.upc)} ${item.dateAdded}`.toLowerCase();
+          return haystack.includes(q);
+        })
+        .sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded) || a.name.localeCompare(b.name));
+
+      document.getElementById("count").textContent = `${filtered.length} item${filtered.length === 1 ? "" : "s"}`;
+
+      if (!filtered.length) {
+        app.innerHTML = `<div class="empty">No matching items.</div>`;
+        return;
+      }
+
+      const groups = groupByDate(filtered);
+      const dates = Object.keys(groups).sort((a, b) => new Date(b) - new Date(a));
+
+      app.innerHTML = dates.map(date => `
+        <section class="date-section">
+          <div class="date-heading"><h2>${formatDate(date)}</h2></div>
+          <div class="grid">
+            ${groups[date].map(cardTemplate).join("")}
+          </div>
+        </section>
+      `).join("");
+    }
+
+    document.getElementById("search").addEventListener("input", render);
+    render();
+  </script>
+</body>
+</html>
