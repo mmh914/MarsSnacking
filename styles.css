@@ -23,6 +23,7 @@
   --order-muted-line: #cfcfcf;
   --modal-card: #ffffff;
   --red: #bd0000;
+  --blue: #0071ce;
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -52,6 +53,7 @@
     --order-muted-line: #4b5563;
     --modal-card: #181b1f;
     --red: #ef4444;
+    --blue: #60a5fa;
     --shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
   }
 }
