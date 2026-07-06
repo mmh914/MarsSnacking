@@ -293,7 +293,7 @@ button.item-card {
   min-height: 190px;
   border-color: var(--brand);
   background: linear-gradient(135deg, var(--brand), var(--accent));
-  color: var(--button-ink);
+  color: #ffffff;
 }
 
 .size-card {
@@ -475,7 +475,7 @@ body.modal-open {
   width: 100%;
   min-height: min(42vh, 360px);
   padding: clamp(10px, 2vw, 20px);
-  background: var(--inverse-button-bg);
+  background: #ffffff;
 }
 
 .expanded-barcode .barcode {
@@ -675,7 +675,7 @@ dd {
   }
 
   body {
-    background: var(--input-bg);
+    background: white;
   }
 
   .item-card,
