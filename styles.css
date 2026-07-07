@@ -25,6 +25,9 @@
   --red: #bd0000;
   --blue: #0071ce;
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --barcode-bg: #ffffff;
+  --barcode-bars: #111111;
+  --barcode-text: #111111;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -55,10 +58,15 @@
     --red: #ef4444;
     --blue: #60a5fa;
     --shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+    --barcode-bg: #181b1f;
+    --barcode-bars: #ffffff;
+    --barcode-text: #ffffff;
   }
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -68,8 +76,17 @@ body {
   color: var(--ink);
 }
 
-button, input, select, textarea { font: inherit; }
-h1, h2, h3 { margin: 0; }
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+h1,
+h2,
+h3 {
+  margin: 0;
+}
 
 header,
 .app-header {
@@ -108,8 +125,12 @@ h1 {
   white-space: nowrap;
 }
 
-.brand-mark .k { color: #d71920; }
-.brand-mark .w { color: #0071ce; }
+.brand-mark .k {
+  color: #d71920;
+}
+.brand-mark .w {
+  color: #0071ce;
+}
 
 .controls {
   max-width: 1500px;
@@ -163,8 +184,6 @@ main {
   cursor: pointer;
   touch-action: manipulation;
 }
-
-
 
 .eyebrow {
   margin: 0 0 0.35rem;
@@ -351,6 +370,24 @@ button.item-card {
   overflow: visible;
 }
 
+.barcode,
+.barcode-svg {
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.barcode-bg {
+  fill: var(--barcode-bg);
+}
+
+.barcode-bars {
+  fill: var(--barcode-bars);
+}
+
+.barcode-text {
+  fill: var(--barcode-text);
+}
+
 .upc-text {
   font-family: "Courier New", monospace;
   font-size: 0.88rem;
@@ -367,7 +404,10 @@ button.item-card {
 .archive-card {
   cursor: pointer;
   touch-action: manipulation;
-  transition: border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+  transition:
+    border-color 120ms ease,
+    box-shadow 120ms ease,
+    transform 120ms ease;
 }
 
 .archive-card:hover {
@@ -460,7 +500,7 @@ body.modal-open {
   width: 100%;
   min-height: min(42vh, 360px);
   padding: clamp(10px, 2vw, 20px);
-  background: #ffffff;
+  background: var(--barcode-bg);
 }
 
 .expanded-barcode .barcode {
@@ -555,7 +595,9 @@ dd {
   font-weight: 900;
 }
 
-.barcode-target { margin-top: 1rem; }
+.barcode-target {
+  margin-top: 1rem;
+}
 
 .barcode-svg {
   width: 100%;
@@ -581,7 +623,9 @@ dd {
   font-weight: 800;
 }
 
-.order-row strong { font-size: 1.1em; }
+.order-row strong {
+  font-size: 1.1em;
+}
 
 .order-row.muted {
   background: var(--order-muted-bg);
@@ -613,7 +657,9 @@ dd {
     padding-inline: 12px;
   }
 
-  .brand-mark { text-align: center; }
+  .brand-mark {
+    text-align: center;
+  }
 
   .controls {
     flex-direction: column;
@@ -625,7 +671,9 @@ dd {
     gap: 18px;
   }
 
-  .item-card { min-height: 260px; }
+  .item-card {
+    min-height: 260px;
+  }
 }
 
 @media (max-width: 620px) {

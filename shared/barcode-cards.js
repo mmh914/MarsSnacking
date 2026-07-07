@@ -54,8 +54,8 @@
 
     return `
       <svg class="barcode" viewBox="0 0 ${width} ${height}" role="img" aria-label="UPC ${digits}">
-        <rect width="100%" height="100%" fill="white"></rect>
-        <g fill="black">${rects}</g>
+        <rect class="barcode-bg" width="100%" height="100%" fill="white"></rect>
+        <g class="barcode-bars" fill="black">${rects}</g>
       </svg>
     `;
   }
@@ -154,6 +154,20 @@
     });
   }
 
+  function syncDarkModeClass() {
+    const query = window.matchMedia?.("(prefers-color-scheme: dark)");
+    if (!query) return;
+
+    const update = () => {
+      document.documentElement.classList.toggle("dark-mode", query.matches);
+    };
+
+    update();
+    if (query.addEventListener) query.addEventListener("change", update);
+    else query.addListener?.(update);
+  }
+
+  syncDarkModeClass();
   window.BarcodeCards = {
     cleanUpc,
     isValidUpcA,

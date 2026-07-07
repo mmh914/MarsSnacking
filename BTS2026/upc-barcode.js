@@ -40,9 +40,9 @@
 
     target.innerHTML = `
       <svg class="barcode-svg" viewBox="0 0 ${width} ${barHeight + textHeight}" role="img" aria-label="UPC barcode ${upc}" xmlns="http://www.w3.org/2000/svg">
-        <rect width="100%" height="100%" fill="#fff" />
-        <g fill="#111">${bars.join('')}</g>
-        <text x="${width / 2}" y="${barHeight + 18}" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" letter-spacing="2">${upc}</text>
+        <rect class="barcode-bg" width="100%" height="100%" fill="#fff" />
+        <g class="barcode-bars" fill="#111">${bars.join('')}</g>
+        <text class="barcode-text" x="${width / 2}" y="${barHeight + 18}" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" letter-spacing="2">${upc}</text>
       </svg>`;
   };
 }());

@@ -25,7 +25,7 @@ The Back-to-School tool is a static, browser-based selling tool for GitHub Pages
 - `BTS2026/app.js` - DOM rendering, navigation state, and barcode hookup.
 - `BTS2026/products.js` - editable product data for brands, sizes, items, UPCs, Walmart item numbers, and order quantities.
 - `BTS2026/assets/products/` - place final product images here.
-- `BTS2026/assets/vendor/upc-barcode.js` - local dependency-free UPC-A SVG barcode renderer.
+- `BTS2026/upc-barcode.js` - local dependency-free UPC-A SVG barcode renderer.
 
 ### Editing product data
 
@@ -86,7 +86,7 @@ The barcode is generated in the browser from the `upc` value in `BTS2026/product
 
 ### Barcode library
 
-Barcode rendering uses the local script `BTS2026/assets/vendor/upc-barcode.js`. It is a small dependency-free UPC-A SVG barcode renderer included in this repository, so the app does not depend on a remote CDN at runtime.
+Barcode rendering uses the local script `BTS2026/upc-barcode.js`. It is a small dependency-free UPC-A SVG barcode renderer included in this repository, so the app does not depend on a remote CDN at runtime.
 
 ## Deploying with GitHub Pages
 
