@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "products.schema.json",
+  "title": "Mars Snacking Product Catalog",
+  "description": "Defines the required structure of the shared product catalog.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["catalogVersion", "lastUpdated", "products"],
+  "properties": {
+    "catalogVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Version number for the overall catalog format."
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the catalog was last updated, written as YYYY-MM-DD."
+    },
+    "products": {
+      "type": "array",
+      "description": "All products in the catalog.",
+      "items": {
+        "$ref": "#/$defs/product"
+      }
+    }
+  },
+  "$defs": {
+    "product": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "brand",
+        "name",
+        "description",
+        "size",
+        "upc",
+        "walmartItemNumber",
+        "image",
+        "status",
+        "isLimitedTimeOffering",
+        "dateAdded",
+        "tags"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "description": "A unique, permanent internal ID using lowercase letters, numbers, and hyphens."
+        },
+        "brand": {
+          "type": "string",
+          "enum": [
+            "Cheez-It",
+            "Pringles",
+            "Pop-Tarts",
+            "Rice Krispies Treats",
+            "Club",
+            "Town House",
+            "Eggo",
+            "Frozen",
+            "Other"
+          ],
+          "description": "The product brand."
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The customer-facing product name."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "A concise description of the product."
+        },
+        "size": {
+          "$ref": "#/$defs/productSize"
+        },
+        "upc": {
+          "type": "string",
+          "pattern": "^[0-9]{12,14}$",
+          "description": "The 12-to-14-digit UPC or GTIN, stored as text to preserve leading zeroes."
+        },
+        "walmartItemNumber": {
+          "type": "string",
+          "pattern": "^[0-9]+$",
+          "description": "The Walmart item number, stored as text."
+        },
+        "image": {
+          "type": "string",
+          "minLength": 1,
+          "description": "A repository-relative path or URL for the primary product image."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["coming-soon", "active", "inactive", "discontinued"],
+          "description": "The current lifecycle status of the product."
+        },
+        "isLimitedTimeOffering": {
+          "type": "boolean",
+          "description": "Whether the product is a limited-time offering."
+        },
+        "dateAdded": {
+          "type": "string",
+          "format": "date",
+          "description": "The date the product was added, written as YYYY-MM-DD."
+        },
+        "tags": {
+          "type": "array",
+          "description": "Searchable classifications for the product.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "productSize": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "unit"],
+      "properties": {
+        "value": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "The numerical package size."
+        },
+        "unit": {
+          "type": "string",
+          "enum": ["oz", "lb", "ct", "fl oz", "g"],
+          "description": "The unit used for the package size."
+        }
+      }
+    }
+  }
+}
