@@ -31,14 +31,36 @@
     </article>
   </div>
 
-  <script src="lto-barcode-items.js"></script>
   <script src="../shared/barcode-cards.js"></script>
   <script>
     const { cleanUpc, cardTemplate, bindArchiveCards, wireModal } = window.BarcodeCards;
+    const app = document.getElementById("app");
+    const count = document.getElementById("count");
+    const search = document.getElementById("search");
+    let items = [];
+
+    function imagePathForArchive(imagePath) {
+      if (!imagePath) return "";
+      if (/^(?:[a-z]+:|\/)/i.test(imagePath)) return imagePath;
+      return `../${imagePath}`;
+    }
+
+    function normalizeProduct(product) {
+      return {
+        name: product.name,
+        imageSrc: imagePathForArchive(product.image),
+        upc: product.upc,
+        dateAdded: product.dateAdded,
+      };
+    }
+
+    function setMessage(message, countText = "") {
+      count.textContent = countText;
+      app.innerHTML = `<div class="empty">${message}</div>`;
+    }
 
     function render() {
-      const app = document.getElementById("app");
-      const q = document.getElementById("search").value.trim().toLowerCase();
+      const q = search.value.trim().toLowerCase();
       const filtered = items
         .filter((item) => {
           const haystack = `${item.name} ${cleanUpc(item.upc)} ${item.dateAdded}`.toLowerCase();
@@ -46,7 +68,7 @@
         })
         .sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded) || a.name.localeCompare(b.name));
 
-      document.getElementById("count").textContent = `${filtered.length} item${filtered.length === 1 ? "" : "s"}`;
+      count.textContent = `${filtered.length} item${filtered.length === 1 ? "" : "s"}`;
 
       if (!filtered.length) {
         app.innerHTML = `<div class="empty">No matching items.</div>`;
@@ -62,9 +84,32 @@
       bindArchiveCards(app, filtered);
     }
 
-    document.getElementById("search").addEventListener("input", render);
+    async function loadCatalog() {
+      setMessage("Loading items...", "Loading");
+
+      try {
+        const response = await fetch("../product-catalog-data/product-catalog.json");
+        if (!response.ok) throw new Error(`Catalog request failed with ${response.status}`);
+
+        const catalog = await response.json();
+        if (!catalog || !Array.isArray(catalog.products)) {
+          throw new Error("Catalog products array is missing");
+        }
+
+        items = catalog.products
+          .filter((product) => product.isLimitedTimeOffering === true)
+          .map(normalizeProduct);
+
+        render();
+      } catch (error) {
+        console.error(error);
+        setMessage("Unable to load the product catalog.", "Catalog error");
+      }
+    }
+
+    search.addEventListener("input", render);
     wireModal();
-    render();
+    loadCatalog();
   </script>
 </body>
 </html>
