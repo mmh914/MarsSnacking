@@ -1,0 +1,23 @@
+{
+  "catalogVersion": 1,
+  "lastUpdated": "2026-07-15",
+  "products": [
+    {
+      "id": "cheezit-original-12-4oz",
+      "brand": "Cheez-It",
+      "name": "Cheez-It Original Crackers",
+      "description": "Original baked cheese snack crackers.",
+      "size": {
+        "value": 12.4,
+        "unit": "oz"
+      },
+      "upc": "024100705256",
+      "walmartItemNumber": "12345678",
+      "image": "images/cheezit-original-12-4oz.png",
+      "status": "active",
+      "isLimitedTimeOffering": false,
+      "dateAdded": "2026-07-15",
+      "tags": ["crackers", "snacking", "cheese"]
+    }
+  ]
+}
