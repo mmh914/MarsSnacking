@@ -176,6 +176,7 @@
   }
 
   function wireBarcodeInvertToggle() {
+    document.documentElement.classList.add("has-barcode-toggle");
     if (document.getElementById("barcodeInvertToggle")) return;
 
     const button = document.createElement("button");
