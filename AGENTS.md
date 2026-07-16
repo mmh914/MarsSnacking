@@ -3,7 +3,7 @@
 ## Shared Page Assets
 
 - All HTML pages must use the shared root stylesheet at `styles.css`.
-- Do not add page-specific stylesheet files unless the shared stylesheet cannot reasonably support the page; prefer extending `styles.css` with scoped classes.
+- Do not add page-specific stylesheet files or page-specific styles.
 - Pages in subdirectories should reference the shared stylesheet with the correct relative path, for example `../styles.css`.
 
 ## Barcode Generation
