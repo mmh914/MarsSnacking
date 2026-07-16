@@ -154,6 +154,48 @@
     });
   }
 
+  function getBarcodeColorMode() {
+    try {
+      return localStorage.getItem("barcodeColorMode");
+    } catch (_error) {
+      return null;
+    }
+  }
+
+  function setBarcodeColorMode(mode) {
+    try {
+      localStorage.setItem("barcodeColorMode", mode);
+    } catch (_error) {
+      // Keep the toggle working for the current page even when storage is unavailable.
+    }
+  }
+
+  function syncBarcodeToggleLabel(button, isNormal) {
+    button.setAttribute("aria-pressed", String(isNormal));
+    button.textContent = isNormal ? "Use inverted barcodes" : "Use normal barcodes";
+  }
+
+  function wireBarcodeInvertToggle() {
+    if (document.getElementById("barcodeInvertToggle")) return;
+
+    const button = document.createElement("button");
+    button.id = "barcodeInvertToggle";
+    button.className = "barcode-invert-toggle";
+    button.type = "button";
+
+    const isNormal = getBarcodeColorMode() === "normal";
+    document.documentElement.classList.toggle("barcode-normal-barcodes", isNormal);
+    syncBarcodeToggleLabel(button, isNormal);
+
+    button.addEventListener("click", () => {
+      const nextIsNormal = !document.documentElement.classList.contains("barcode-normal-barcodes");
+      document.documentElement.classList.toggle("barcode-normal-barcodes", nextIsNormal);
+      setBarcodeColorMode(nextIsNormal ? "normal" : "inverted");
+      syncBarcodeToggleLabel(button, nextIsNormal);
+    });
+
+    document.body.append(button);
+  }
   function syncDarkModeClass() {
     const query = window.matchMedia?.("(prefers-color-scheme: dark)");
     if (!query) return;
@@ -168,6 +210,12 @@
   }
 
   syncDarkModeClass();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", wireBarcodeInvertToggle, { once: true });
+  } else {
+    wireBarcodeInvertToggle();
+  }
+
   window.BarcodeCards = {
     cleanUpc,
     isValidUpcA,
@@ -177,6 +225,7 @@
     openExpandedCard,
     closeExpandedCard,
     bindArchiveCards,
+    wireBarcodeInvertToggle,
     wireModal
   };
 }());

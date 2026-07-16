@@ -64,6 +64,12 @@
   }
 }
 
+:root.barcode-normal-barcodes {
+  --barcode-bg: #ffffff;
+  --barcode-bars: #111111;
+  --barcode-text: #111111;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -386,6 +392,49 @@ button.item-card {
 
 .barcode-text {
   fill: var(--barcode-text);
+}
+
+.barcode-invert-toggle {
+  display: none;
+  position: fixed;
+  top: max(12px, env(safe-area-inset-top));
+  right: max(12px, env(safe-area-inset-right));
+  z-index: 150;
+  min-height: 42px;
+  max-width: min(210px, calc(100vw - 24px));
+  padding: 9px 12px;
+  border: 1px solid var(--strong-line);
+  border-radius: 6px;
+  background: var(--button-bg);
+  color: var(--button-ink);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.28);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 900;
+  line-height: 1.1;
+  text-align: center;
+  touch-action: manipulation;
+}
+
+.dark-mode .barcode-invert-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.barcode-invert-toggle[aria-pressed="true"] {
+  background: #ffffff;
+  color: #111111;
+  border-color: #ffffff;
+}
+
+.modal-open .barcode-invert-toggle {
+  right: max(72px, env(safe-area-inset-right));
+}
+
+.barcode-invert-toggle:focus-visible {
+  outline: 4px solid var(--focus);
+  outline-offset: 3px;
 }
 
 .upc-text {
