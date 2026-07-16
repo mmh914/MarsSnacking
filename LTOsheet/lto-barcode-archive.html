@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -39,18 +39,21 @@
     const search = document.getElementById("search");
     let items = [];
 
-    function imagePathForArchive(imagePath) {
+    function imagePathFromCatalog(imagePath) {
       if (!imagePath) return "";
       if (/^(?:[a-z]+:|\/)/i.test(imagePath)) return imagePath;
       return `../${imagePath}`;
     }
 
     function normalizeProduct(product) {
+      const tags = Array.isArray(product.tags) ? product.tags.join(" ") : "";
       return {
         name: product.name,
-        imageSrc: imagePathForArchive(product.image),
+        imageSrc: imagePathFromCatalog(product.image),
         upc: product.upc,
+        brand: product.brand,
         dateAdded: product.dateAdded,
+        searchText: `${product.name} ${product.brand} ${cleanUpc(product.upc)} ${product.dateAdded} ${tags}`.toLowerCase(),
       };
     }
 
@@ -62,11 +65,8 @@
     function render() {
       const q = search.value.trim().toLowerCase();
       const filtered = items
-        .filter((item) => {
-          const haystack = `${item.name} ${cleanUpc(item.upc)} ${item.dateAdded}`.toLowerCase();
-          return haystack.includes(q);
-        })
-        .sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded) || a.name.localeCompare(b.name));
+        .filter((item) => item.searchText.includes(q))
+        .sort((a, b) => Date.parse(b.dateAdded) - Date.parse(a.dateAdded) || a.name.localeCompare(b.name));
 
       count.textContent = `${filtered.length} item${filtered.length === 1 ? "" : "s"}`;
 

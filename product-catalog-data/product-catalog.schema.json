@@ -5,7 +5,11 @@
   "description": "Defines the required structure of the shared product catalog.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["catalogVersion", "lastUpdated", "products"],
+  "required": [
+    "catalogVersion",
+    "lastUpdated",
+    "products"
+  ],
   "properties": {
     "catalogVersion": {
       "type": "integer",
@@ -35,6 +39,7 @@
         "name",
         "description",
         "size",
+        "sizeGroup",
         "upc",
         "walmartItemNumber",
         "image",
@@ -78,6 +83,9 @@
         "size": {
           "$ref": "#/$defs/productSize"
         },
+        "sizeGroup": {
+          "$ref": "#/$defs/sizeGroup"
+        },
         "upc": {
           "type": "string",
           "pattern": "^[0-9]{12,14}$",
@@ -95,7 +103,12 @@
         },
         "status": {
           "type": "string",
-          "enum": ["coming-soon", "active", "inactive", "discontinued"],
+          "enum": [
+            "coming-soon",
+            "active",
+            "inactive",
+            "discontinued"
+          ],
           "description": "The current lifecycle status of the product."
         },
         "isLimitedTimeOffering": {
@@ -121,7 +134,10 @@
     "productSize": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["value", "unit"],
+      "required": [
+        "value",
+        "unit"
+      ],
       "properties": {
         "value": {
           "type": "number",
@@ -130,8 +146,41 @@
         },
         "unit": {
           "type": "string",
-          "enum": ["oz", "lb", "ct", "fl oz", "g"],
+          "enum": [
+            "oz",
+            "lb",
+            "ct",
+            "fl oz",
+            "g"
+          ],
           "description": "The unit used for the package size."
+        }
+      }
+    },
+    "sizeGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "sortOrder"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "description": "A normalized package-size grouping ID for cross-brand sorting."
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The customer-facing package-size grouping label."
+        },
+        "sortOrder": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "A stable sort position for package-size groups."
         }
       }
     }

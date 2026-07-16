@@ -1,7 +1,7 @@
-﻿{
+{
   "$schema": "./product-catalog.schema.json",
   "catalogVersion": 1,
-  "lastUpdated": "2026-07-15",
+  "lastUpdated": "2026-07-16",
   "products": [
     {
       "id": "cheezit-original-12-4oz",
@@ -12,13 +12,22 @@
         "value": 12.4,
         "unit": "oz"
       },
+      "sizeGroup": {
+        "id": "standard-size",
+        "label": "Standard Size",
+        "sortOrder": 20
+      },
       "upc": "024100705256",
       "walmartItemNumber": "12345678",
       "image": "images/cheezit-original-12-4oz.png",
       "status": "active",
       "isLimitedTimeOffering": false,
       "dateAdded": "2026-07-15",
-      "tags": ["crackers", "snacking", "cheese"]
+      "tags": [
+        "crackers",
+        "snacking",
+        "cheese"
+      ]
     },
     {
       "id": "cheez-it-original-lto",
@@ -29,13 +38,23 @@
         "value": 1,
         "unit": "ct"
       },
+      "sizeGroup": {
+        "id": "limited-time-unit",
+        "label": "Limited-Time Unit",
+        "sortOrder": 90
+      },
       "upc": "024100124640",
       "walmartItemNumber": "0",
-      "image": "LTOsheet/images/cheez-it-original-lto.png",
+      "image": "product-catalog-data/images/cheez-it-original-lto.png",
       "status": "active",
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
-      "tags": ["crackers", "snacking", "cheese", "lto"]
+      "tags": [
+        "crackers",
+        "snacking",
+        "cheese",
+        "lto"
+      ]
     },
     {
       "id": "town-house-dippers-original",
@@ -46,13 +65,23 @@
         "value": 1,
         "unit": "ct"
       },
+      "sizeGroup": {
+        "id": "limited-time-unit",
+        "label": "Limited-Time Unit",
+        "sortOrder": 90
+      },
       "upc": "030100129936",
       "walmartItemNumber": "0",
-      "image": "LTOsheet/images/town-house-dippers-original.png",
+      "image": "product-catalog-data/images/town-house-dippers-original.png",
       "status": "active",
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
-      "tags": ["crackers", "snacking", "dippers", "lto"]
+      "tags": [
+        "crackers",
+        "snacking",
+        "dippers",
+        "lto"
+      ]
     },
     {
       "id": "cheez-it-loaded-baconator-12-4oz",
@@ -63,13 +92,24 @@
         "value": 12.4,
         "unit": "oz"
       },
+      "sizeGroup": {
+        "id": "standard-size",
+        "label": "Standard Size",
+        "sortOrder": 20
+      },
       "upc": "024100124350",
       "walmartItemNumber": "0",
-      "image": "LTOsheet/images/cheez-it-baconator.png",
+      "image": "product-catalog-data/images/cheez-it-baconator.png",
       "status": "active",
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
-      "tags": ["crackers", "snacking", "cheese", "baconator", "lto"]
+      "tags": [
+        "crackers",
+        "snacking",
+        "cheese",
+        "baconator",
+        "lto"
+      ]
     },
     {
       "id": "cheez-it-hot-honey",
@@ -80,13 +120,24 @@
         "value": 1,
         "unit": "ct"
       },
+      "sizeGroup": {
+        "id": "limited-time-unit",
+        "label": "Limited-Time Unit",
+        "sortOrder": 90
+      },
       "upc": "024100125678",
       "walmartItemNumber": "0",
-      "image": "LTOsheet/images/cheez-it-hot-honey.png",
+      "image": "product-catalog-data/images/cheez-it-hot-honey.png",
       "status": "active",
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
-      "tags": ["crackers", "snacking", "cheese", "hot honey", "lto"]
+      "tags": [
+        "crackers",
+        "snacking",
+        "cheese",
+        "hot honey",
+        "lto"
+      ]
     },
     {
       "id": "town-house-game-day-dippers-original",
@@ -97,13 +148,24 @@
         "value": 1,
         "unit": "ct"
       },
+      "sizeGroup": {
+        "id": "limited-time-unit",
+        "label": "Limited-Time Unit",
+        "sortOrder": 90
+      },
       "upc": "030100130239",
       "walmartItemNumber": "0",
-      "image": "LTOsheet/images/town-house-gameday-dippers.png",
+      "image": "product-catalog-data/images/town-house-gameday-dippers.png",
       "status": "active",
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
-      "tags": ["crackers", "snacking", "dippers", "game day", "lto"]
+      "tags": [
+        "crackers",
+        "snacking",
+        "dippers",
+        "game day",
+        "lto"
+      ]
     },
     {
       "id": "zesta-minis-restaurant-style",
@@ -114,13 +176,24 @@
         "value": 1,
         "unit": "ct"
       },
+      "sizeGroup": {
+        "id": "limited-time-unit",
+        "label": "Limited-Time Unit",
+        "sortOrder": 90
+      },
       "upc": "030100130031",
       "walmartItemNumber": "0",
-      "image": "LTOsheet/images/zesta-minis.png",
+      "image": "product-catalog-data/images/zesta-minis.png",
       "status": "active",
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
-      "tags": ["crackers", "snacking", "zesta", "minis", "lto"]
+      "tags": [
+        "crackers",
+        "snacking",
+        "zesta",
+        "minis",
+        "lto"
+      ]
     },
     {
       "id": "zesta-oyster-crackers",
@@ -131,13 +204,24 @@
         "value": 1,
         "unit": "ct"
       },
+      "sizeGroup": {
+        "id": "limited-time-unit",
+        "label": "Limited-Time Unit",
+        "sortOrder": 90
+      },
       "upc": "030100130147",
       "walmartItemNumber": "0",
-      "image": "LTOsheet/images/zesta-oyster-crackers.png",
+      "image": "product-catalog-data/images/zesta-oyster-crackers.png",
       "status": "active",
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
-      "tags": ["crackers", "snacking", "zesta", "oyster crackers", "lto"]
+      "tags": [
+        "crackers",
+        "snacking",
+        "zesta",
+        "oyster crackers",
+        "lto"
+      ]
     },
     {
       "id": "club-minis-cinnamon-sugar",
@@ -148,13 +232,24 @@
         "value": 1,
         "unit": "ct"
       },
+      "sizeGroup": {
+        "id": "limited-time-unit",
+        "label": "Limited-Time Unit",
+        "sortOrder": 90
+      },
       "upc": "030100129462",
       "walmartItemNumber": "0",
-      "image": "LTOsheet/images/club-minis-cinnamon-sugar.png",
+      "image": "product-catalog-data/images/club-minis-cinnamon-sugar.png",
       "status": "active",
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
-      "tags": ["crackers", "snacking", "cinnamon sugar", "minis", "lto"]
+      "tags": [
+        "crackers",
+        "snacking",
+        "cinnamon sugar",
+        "minis",
+        "lto"
+      ]
     },
     {
       "id": "cracker-assortment-8-pack",
@@ -165,13 +260,24 @@
         "value": 8,
         "unit": "ct"
       },
+      "sizeGroup": {
+        "id": "multipack",
+        "label": "Multipack",
+        "sortOrder": 60
+      },
       "upc": "030100129967",
       "walmartItemNumber": "0",
-      "image": "LTOsheet/images/cracker-assortment-8-pack.png",
+      "image": "product-catalog-data/images/cracker-assortment-8-pack.png",
       "status": "active",
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
-      "tags": ["crackers", "snacking", "assortment", "multipack", "lto"]
+      "tags": [
+        "crackers",
+        "snacking",
+        "assortment",
+        "multipack",
+        "lto"
+      ]
     },
     {
       "id": "pringles-mingles-cinnamon-sugar",
@@ -182,13 +288,24 @@
         "value": 1,
         "unit": "ct"
       },
+      "sizeGroup": {
+        "id": "limited-time-unit",
+        "label": "Limited-Time Unit",
+        "sortOrder": 90
+      },
       "upc": "038000328473",
       "walmartItemNumber": "0",
-      "image": "LTOsheet/images/pringles-mingles-cinnamon-sugar.png",
+      "image": "product-catalog-data/images/pringles-mingles-cinnamon-sugar.png",
       "status": "active",
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
-      "tags": ["snacking", "pringles", "mingles", "cinnamon sugar", "lto"]
+      "tags": [
+        "snacking",
+        "pringles",
+        "mingles",
+        "cinnamon sugar",
+        "lto"
+      ]
     },
     {
       "id": "town-house-holiday-dippers-original",
@@ -199,13 +316,24 @@
         "value": 1,
         "unit": "ct"
       },
+      "sizeGroup": {
+        "id": "limited-time-unit",
+        "label": "Limited-Time Unit",
+        "sortOrder": 90
+      },
       "upc": "030100129912",
       "walmartItemNumber": "0",
-      "image": "LTOsheet/images/town-house-holiday-dippers.png",
+      "image": "product-catalog-data/images/town-house-holiday-dippers.png",
       "status": "active",
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
-      "tags": ["crackers", "snacking", "dippers", "holiday", "lto"]
+      "tags": [
+        "crackers",
+        "snacking",
+        "dippers",
+        "holiday",
+        "lto"
+      ]
     },
     {
       "id": "pringles-mingles-10-pack",
@@ -216,13 +344,24 @@
         "value": 10,
         "unit": "ct"
       },
+      "sizeGroup": {
+        "id": "multipack",
+        "label": "Multipack",
+        "sortOrder": 60
+      },
       "upc": "038000308574",
       "walmartItemNumber": "0",
-      "image": "LTOsheet/images/pringles-mingles-10-pack.png",
+      "image": "product-catalog-data/images/pringles-mingles-10-pack.png",
       "status": "active",
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
-      "tags": ["snacking", "pringles", "mingles", "multipack", "lto"]
+      "tags": [
+        "snacking",
+        "pringles",
+        "mingles",
+        "multipack",
+        "lto"
+      ]
     },
     {
       "id": "back-to-school-cheez-it-10-pack",
@@ -233,13 +372,25 @@
         "value": 10,
         "unit": "ct"
       },
+      "sizeGroup": {
+        "id": "multipack",
+        "label": "Multipack",
+        "sortOrder": 60
+      },
       "upc": "024100125647",
       "walmartItemNumber": "0",
-      "image": "LTOsheet/images/back-to-school-cheez-it-10-pack.png",
+      "image": "product-catalog-data/images/back-to-school-cheez-it-10-pack.png",
       "status": "active",
       "isLimitedTimeOffering": true,
       "dateAdded": "2025-01-15",
-      "tags": ["crackers", "snacking", "cheese", "back to school", "multipack", "lto"]
+      "tags": [
+        "crackers",
+        "snacking",
+        "cheese",
+        "back to school",
+        "multipack",
+        "lto"
+      ]
     },
     {
       "id": "back-to-school-pringles-snack-stacks-27-pack",
@@ -250,13 +401,25 @@
         "value": 27,
         "unit": "ct"
       },
+      "sizeGroup": {
+        "id": "multipack",
+        "label": "Multipack",
+        "sortOrder": 60
+      },
       "upc": "038000311390",
       "walmartItemNumber": "0",
-      "image": "LTOsheet/images/back-to-school-pringles-27-pack.png",
+      "image": "product-catalog-data/images/back-to-school-pringles-27-pack.png",
       "status": "active",
       "isLimitedTimeOffering": true,
       "dateAdded": "2025-01-15",
-      "tags": ["snacking", "pringles", "snack stacks", "back to school", "multipack", "lto"]
+      "tags": [
+        "snacking",
+        "pringles",
+        "snack stacks",
+        "back to school",
+        "multipack",
+        "lto"
+      ]
     },
     {
       "id": "pringles-snack-stacks-pizza-12-cups",
@@ -267,13 +430,25 @@
         "value": 12,
         "unit": "ct"
       },
+      "sizeGroup": {
+        "id": "multipack",
+        "label": "Multipack",
+        "sortOrder": 60
+      },
       "upc": "038000312571",
       "walmartItemNumber": "0",
-      "image": "LTOsheet/images/pringles-pizza-12-cups.png",
+      "image": "product-catalog-data/images/pringles-pizza-12-cups.png",
       "status": "active",
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
-      "tags": ["snacking", "pringles", "snack stacks", "pizza", "multipack", "lto"]
+      "tags": [
+        "snacking",
+        "pringles",
+        "snack stacks",
+        "pizza",
+        "multipack",
+        "lto"
+      ]
     },
     {
       "id": "pringles-snack-stacks-multipack",
@@ -284,13 +459,24 @@
         "value": 1,
         "unit": "ct"
       },
+      "sizeGroup": {
+        "id": "multipack",
+        "label": "Multipack",
+        "sortOrder": 60
+      },
       "upc": "038000241789",
       "walmartItemNumber": "0",
-      "image": "LTOsheet/images/pringles-snack-stacks-multipack.png",
+      "image": "product-catalog-data/images/pringles-snack-stacks-multipack.png",
       "status": "active",
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
-      "tags": ["snacking", "pringles", "snack stacks", "multipack", "lto"]
+      "tags": [
+        "snacking",
+        "pringles",
+        "snack stacks",
+        "multipack",
+        "lto"
+      ]
     }
   ]
 }
