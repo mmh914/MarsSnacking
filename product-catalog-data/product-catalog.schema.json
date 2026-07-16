@@ -46,6 +46,7 @@
         "status",
         "isLimitedTimeOffering",
         "dateAdded",
+        "lastUpdated",
         "tags"
       ],
       "properties": {
@@ -119,6 +120,11 @@
           "type": "string",
           "format": "date",
           "description": "The date the product was added, written as YYYY-MM-DD."
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date",
+          "description": "The date the product was last updated, written as YYYY-MM-DD."
         },
         "tags": {
           "type": "array",
