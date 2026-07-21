@@ -1,7 +1,7 @@
 {
   "$schema": "./product-catalog.schema.json",
   "catalogVersion": 1,
-  "lastUpdated": "2026-07-16",
+  "lastUpdated": "2026-07-21",
   "products": [
     {
       "id": "cheezit-original-12-4oz",
@@ -19,7 +19,7 @@
       },
       "upc": "024100705256",
       "walmartItemNumber": "12345678",
-      "image": "images/cheezit-original-12-4oz.png",
+      "image": "product-catalog-data/images/cheezit-original-12-4oz.png",
       "status": "active",
       "isLimitedTimeOffering": false,
       "dateAdded": "2026-07-15",
@@ -493,6 +493,445 @@
         "snack stacks",
         "multipack",
         "lto"
+      ]
+    },
+    {
+      "id": "pop-tarts-frosted-strawberry-16-count",
+      "brand": "Pop-Tarts",
+      "name": "Pop-Tarts Frosted Strawberry 16 Count",
+      "description": "Frosted strawberry toaster pastries in a 16-count value pack.",
+      "size": {
+        "value": 16,
+        "unit": "ct"
+      },
+      "sizeGroup": {
+        "id": "16-count",
+        "label": "16-Count",
+        "sortOrder": 40
+      },
+      "upc": "038000223006",
+      "walmartItemNumber": "0",
+      "image": "product-catalog-data/images/pop-tarts-frosted-strawberry-16-count.png",
+      "status": "active",
+      "isLimitedTimeOffering": false,
+      "dateAdded": "2026-07-21",
+      "lastUpdated": "2026-07-21",
+      "tags": [
+        "breakfast",
+        "toaster pastries",
+        "strawberry",
+        "back to school",
+        "16 count"
+      ]
+    },
+    {
+      "id": "pop-tarts-frosted-brown-sugar-cinnamon-16-count",
+      "brand": "Pop-Tarts",
+      "name": "Pop-Tarts Frosted Brown Sugar Cinnamon 16 Count",
+      "description": "Frosted brown sugar cinnamon toaster pastries in a 16-count value pack.",
+      "size": {
+        "value": 16,
+        "unit": "ct"
+      },
+      "sizeGroup": {
+        "id": "16-count",
+        "label": "16-Count",
+        "sortOrder": 40
+      },
+      "upc": "038000222962",
+      "walmartItemNumber": "0",
+      "image": "product-catalog-data/images/pop-tarts-frosted-brown-sugar-cinnamon-16-count.png",
+      "status": "active",
+      "isLimitedTimeOffering": false,
+      "dateAdded": "2026-07-21",
+      "lastUpdated": "2026-07-21",
+      "tags": [
+        "breakfast",
+        "toaster pastries",
+        "brown sugar cinnamon",
+        "back to school",
+        "16 count"
+      ]
+    },
+    {
+      "id": "pop-tarts-frosted-chocolate-fudge-16-count",
+      "brand": "Pop-Tarts",
+      "name": "Pop-Tarts Frosted Chocolate Fudge 16 Count",
+      "description": "Frosted chocolate fudge toaster pastries in a 16-count value pack.",
+      "size": {
+        "value": 16,
+        "unit": "ct"
+      },
+      "sizeGroup": {
+        "id": "16-count",
+        "label": "16-Count",
+        "sortOrder": 40
+      },
+      "upc": "038000222870",
+      "walmartItemNumber": "0",
+      "image": "product-catalog-data/images/pop-tarts-frosted-chocolate-fudge-16-count.png",
+      "status": "active",
+      "isLimitedTimeOffering": false,
+      "dateAdded": "2026-07-21",
+      "lastUpdated": "2026-07-21",
+      "tags": [
+        "breakfast",
+        "toaster pastries",
+        "chocolate fudge",
+        "back to school",
+        "16 count"
+      ]
+    },
+    {
+      "id": "pop-tarts-frosted-smores-16-count",
+      "brand": "Pop-Tarts",
+      "name": "Pop-Tarts Frosted S'mores 16 Count",
+      "description": "Frosted s'mores toaster pastries in a 16-count value pack.",
+      "size": {
+        "value": 16,
+        "unit": "ct"
+      },
+      "sizeGroup": {
+        "id": "16-count",
+        "label": "16-Count",
+        "sortOrder": 40
+      },
+      "upc": "038000222986",
+      "walmartItemNumber": "0",
+      "image": "product-catalog-data/images/pop-tarts-frosted-smores-16-count.png",
+      "status": "active",
+      "isLimitedTimeOffering": false,
+      "dateAdded": "2026-07-21",
+      "lastUpdated": "2026-07-21",
+      "tags": [
+        "breakfast",
+        "toaster pastries",
+        "s'mores",
+        "back to school",
+        "16 count"
+      ]
+    },
+    {
+      "id": "cheez-it-original-family-size",
+      "brand": "Cheez-It",
+      "name": "Cheez-It Original Family Size",
+      "description": "Original baked cheese snack crackers in a 21 oz family-size box.",
+      "size": {
+        "value": 21,
+        "unit": "oz"
+      },
+      "sizeGroup": {
+        "id": "family-size",
+        "label": "Family Size",
+        "sortOrder": 30
+      },
+      "upc": "024100440702",
+      "walmartItemNumber": "0",
+      "image": "product-catalog-data/images/cheez-it-original-family-size.png",
+      "status": "active",
+      "isLimitedTimeOffering": false,
+      "dateAdded": "2026-07-21",
+      "lastUpdated": "2026-07-21",
+      "tags": [
+        "crackers",
+        "snacking",
+        "cheese",
+        "back to school",
+        "family size"
+      ]
+    },
+    {
+      "id": "cheez-it-white-cheddar-family-size",
+      "brand": "Cheez-It",
+      "name": "Cheez-It White Cheddar Family Size",
+      "description": "White cheddar baked snack crackers in a 21 oz family-size box.",
+      "size": {
+        "value": 21,
+        "unit": "oz"
+      },
+      "sizeGroup": {
+        "id": "family-size",
+        "label": "Family Size",
+        "sortOrder": 30
+      },
+      "upc": "024100440870",
+      "walmartItemNumber": "0",
+      "image": "product-catalog-data/images/cheez-it-white-cheddar-family-size.png",
+      "status": "active",
+      "isLimitedTimeOffering": false,
+      "dateAdded": "2026-07-21",
+      "lastUpdated": "2026-07-21",
+      "tags": [
+        "crackers",
+        "snacking",
+        "white cheddar",
+        "back to school",
+        "family size"
+      ]
+    },
+    {
+      "id": "cheez-it-extra-toasty-family-size",
+      "brand": "Cheez-It",
+      "name": "Cheez-It Extra Toasty Family Size",
+      "description": "Extra Toasty baked cheese snack crackers in a 21 oz family-size box.",
+      "size": {
+        "value": 21,
+        "unit": "oz"
+      },
+      "sizeGroup": {
+        "id": "family-size",
+        "label": "Family Size",
+        "sortOrder": 30
+      },
+      "upc": "024100115099",
+      "walmartItemNumber": "0",
+      "image": "product-catalog-data/images/cheez-it-extra-toasty-family-size.png",
+      "status": "active",
+      "isLimitedTimeOffering": false,
+      "dateAdded": "2026-07-21",
+      "lastUpdated": "2026-07-21",
+      "tags": [
+        "crackers",
+        "snacking",
+        "extra toasty",
+        "back to school",
+        "family size"
+      ]
+    },
+    {
+      "id": "cheez-it-extra-cheesy-family-size",
+      "brand": "Cheez-It",
+      "name": "Cheez-It Extra Cheesy Family Size",
+      "description": "Extra Cheesy baked cheese snack crackers in a 21 oz family-size box.",
+      "size": {
+        "value": 21,
+        "unit": "oz"
+      },
+      "sizeGroup": {
+        "id": "family-size",
+        "label": "Family Size",
+        "sortOrder": 30
+      },
+      "upc": "024100123285",
+      "walmartItemNumber": "0",
+      "image": "product-catalog-data/images/cheez-it-extra-cheesy-family-size.png",
+      "status": "active",
+      "isLimitedTimeOffering": false,
+      "dateAdded": "2026-07-21",
+      "lastUpdated": "2026-07-21",
+      "tags": [
+        "crackers",
+        "snacking",
+        "extra cheesy",
+        "back to school",
+        "family size"
+      ]
+    },
+    {
+      "id": "cheez-it-snack-mix-classic-family-size",
+      "brand": "Cheez-It",
+      "name": "Cheez-It Snack Mix Classic Family Size",
+      "description": "Classic Cheez-It snack mix in a 21 oz family-size box.",
+      "size": {
+        "value": 21,
+        "unit": "oz"
+      },
+      "sizeGroup": {
+        "id": "family-size",
+        "label": "Family Size",
+        "sortOrder": 30
+      },
+      "upc": "024100125166",
+      "walmartItemNumber": "0",
+      "image": "product-catalog-data/images/cheez-it-snack-mix-classic-family-size.png",
+      "status": "active",
+      "isLimitedTimeOffering": false,
+      "dateAdded": "2026-07-21",
+      "lastUpdated": "2026-07-21",
+      "tags": [
+        "crackers",
+        "snacking",
+        "snack mix",
+        "back to school",
+        "family size"
+      ]
+    },
+    {
+      "id": "cheez-it-hot-and-spicy-family-size",
+      "brand": "Cheez-It",
+      "name": "Cheez-It Hot & Spicy Family Size",
+      "description": "Hot & Spicy baked cheese snack crackers in a 21 oz family-size box.",
+      "size": {
+        "value": 21,
+        "unit": "oz"
+      },
+      "sizeGroup": {
+        "id": "family-size",
+        "label": "Family Size",
+        "sortOrder": 30
+      },
+      "upc": "024100124978",
+      "walmartItemNumber": "0",
+      "image": "product-catalog-data/images/cheez-it-hot-and-spicy-family-size.png",
+      "status": "active",
+      "isLimitedTimeOffering": false,
+      "dateAdded": "2026-07-21",
+      "lastUpdated": "2026-07-21",
+      "tags": [
+        "crackers",
+        "snacking",
+        "hot and spicy",
+        "back to school",
+        "family size"
+      ]
+    },
+    {
+      "id": "eggo-homestyle-waffles-24-count",
+      "brand": "Eggo",
+      "name": "Eggo Homestyle Waffles 24 Count",
+      "description": "Eggo Homestyle frozen waffles in a 24-count package.",
+      "size": {
+        "value": 24,
+        "unit": "ct"
+      },
+      "sizeGroup": {
+        "id": "24-count",
+        "label": "24-Count",
+        "sortOrder": 50
+      },
+      "upc": "038000402807",
+      "walmartItemNumber": "0",
+      "image": "product-catalog-data/images/eggo-homestyle-waffles-24-count.png",
+      "status": "active",
+      "isLimitedTimeOffering": false,
+      "dateAdded": "2026-07-21",
+      "lastUpdated": "2026-07-21",
+      "tags": [
+        "frozen",
+        "breakfast",
+        "waffles",
+        "homestyle",
+        "back to school",
+        "24 count"
+      ]
+    },
+    {
+      "id": "eggo-buttermilk-waffles-24-count",
+      "brand": "Eggo",
+      "name": "Eggo Buttermilk Waffles 24 Count",
+      "description": "Eggo Buttermilk frozen waffles in a 24-count package.",
+      "size": {
+        "value": 24,
+        "unit": "ct"
+      },
+      "sizeGroup": {
+        "id": "24-count",
+        "label": "24-Count",
+        "sortOrder": 50
+      },
+      "upc": "038000403101",
+      "walmartItemNumber": "0",
+      "image": "product-catalog-data/images/eggo-buttermilk-waffles-24-count.png",
+      "status": "active",
+      "isLimitedTimeOffering": false,
+      "dateAdded": "2026-07-21",
+      "lastUpdated": "2026-07-21",
+      "tags": [
+        "frozen",
+        "breakfast",
+        "waffles",
+        "buttermilk",
+        "back to school",
+        "24 count"
+      ]
+    },
+    {
+      "id": "eggo-blueberry-waffles-24-count",
+      "brand": "Eggo",
+      "name": "Eggo Blueberry Waffles 24 Count",
+      "description": "Eggo Blueberry frozen waffles in a 24-count package.",
+      "size": {
+        "value": 24,
+        "unit": "ct"
+      },
+      "sizeGroup": {
+        "id": "24-count",
+        "label": "24-Count",
+        "sortOrder": 50
+      },
+      "upc": "038000333606",
+      "walmartItemNumber": "0",
+      "image": "product-catalog-data/images/eggo-blueberry-waffles-24-count.png",
+      "status": "active",
+      "isLimitedTimeOffering": false,
+      "dateAdded": "2026-07-21",
+      "lastUpdated": "2026-07-21",
+      "tags": [
+        "frozen",
+        "breakfast",
+        "waffles",
+        "blueberry",
+        "back to school",
+        "24 count"
+      ]
+    },
+    {
+      "id": "eggo-chocolatey-chip-waffles-24-count",
+      "brand": "Eggo",
+      "name": "Eggo Chocolatey Chip Waffles 24 Count",
+      "description": "Eggo Chocolatey Chip frozen waffles in a 24-count package.",
+      "size": {
+        "value": 24,
+        "unit": "ct"
+      },
+      "sizeGroup": {
+        "id": "24-count",
+        "label": "24-Count",
+        "sortOrder": 50
+      },
+      "upc": "038000333644",
+      "walmartItemNumber": "0",
+      "image": "product-catalog-data/images/eggo-chocolatey-chip-waffles-24-count.png",
+      "status": "active",
+      "isLimitedTimeOffering": false,
+      "dateAdded": "2026-07-21",
+      "lastUpdated": "2026-07-21",
+      "tags": [
+        "frozen",
+        "breakfast",
+        "waffles",
+        "chocolatey chip",
+        "back to school",
+        "24 count"
+      ]
+    },
+    {
+      "id": "rice-krispies-treats-original-16-count",
+      "brand": "Rice Krispies Treats",
+      "name": "Rice Krispies Treats Original 16 Count",
+      "description": "Original crispy marshmallow squares in a 16-count package.",
+      "size": {
+        "value": 16,
+        "unit": "ct"
+      },
+      "sizeGroup": {
+        "id": "16-count",
+        "label": "16-Count",
+        "sortOrder": 40
+      },
+      "upc": "038000350559",
+      "walmartItemNumber": "0",
+      "image": "product-catalog-data/images/rice-krispies-treats-original-16-count.png",
+      "status": "active",
+      "isLimitedTimeOffering": false,
+      "dateAdded": "2026-07-21",
+      "lastUpdated": "2026-07-21",
+      "tags": [
+        "snacking",
+        "marshmallow treats",
+        "original",
+        "back to school",
+        "16 count"
       ]
     }
   ]

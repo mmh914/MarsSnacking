@@ -11,6 +11,11 @@
     "products"
   ],
   "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "./product-catalog.schema.json",
+      "description": "Relative path to the schema used to validate this catalog."
+    },
     "catalogVersion": {
       "type": "integer",
       "minimum": 1,

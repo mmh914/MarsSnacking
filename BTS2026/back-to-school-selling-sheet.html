@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -6,30 +6,33 @@
   <title>Back-to-School Selling Sheet</title>
   <link rel="stylesheet" href="../styles.css">
 </head>
-<body>
+<body data-catalog-url="../product-catalog-data/product-catalog.json" data-home-url="../index.html">
   <header class="app-header">
     <button id="backButton" class="back-button" type="button">&larr; Back</button>
     <div>
-      <p class="eyebrow">Mars Snacking &bull; Back-to-School</p>
-      <h1 id="screenTitle">Selling Sheet</h1>
-      <p id="breadcrumb" class="breadcrumb">Choose a brand</p>
+      <p id="sheetEyebrow" class="eyebrow">Mars Snacking</p>
+      <h1 id="screenTitle">Back-to-School Selling Sheet</h1>
+      <p id="breadcrumb" class="breadcrumb">Loading sales sheet</p>
     </div>
   </header>
 
+  <aside id="sheetWarning" class="sheet-warning" role="status" hidden></aside>
   <main id="app" class="app-shell" aria-live="polite"></main>
+
   <div id="barcodeModal" class="barcode-modal" hidden>
     <button class="modal-backdrop" type="button" aria-label="Close expanded barcode"></button>
     <article class="expanded-card" role="dialog" aria-modal="true" aria-labelledby="expandedName">
       <button id="closeModal" class="modal-close" type="button" aria-label="Close expanded barcode">X</button>
       <div id="expandedImage" class="expanded-image"></div>
       <p id="expandedName" class="expanded-name"></p>
+      <div id="expandedStatus" class="status-badge" hidden></div>
       <div id="expandedBarcode" class="expanded-barcode"></div>
       <div id="expandedUpc" class="expanded-upc"></div>
     </article>
   </div>
 
-  <script src="back-to-school-items.js"></script>
+  <script src="sales-sheet-definition.js"></script>
   <script src="../shared/barcode-cards.js"></script>
-  <script src="app.js"></script>
+  <script src="../shared/sales-sheet.js"></script>
 </body>
 </html>

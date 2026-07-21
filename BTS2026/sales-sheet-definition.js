@@ -1,0 +1,22 @@
+window.SALES_SHEET = {
+  id: "back-to-school-2026",
+  title: "Back-to-School Selling Sheet 2026",
+  eyebrow: "Mars Snacking • Back-to-School 2026",
+  productIds: [
+    "pop-tarts-frosted-strawberry-16-count",
+    "pop-tarts-frosted-brown-sugar-cinnamon-16-count",
+    "pop-tarts-frosted-chocolate-fudge-16-count",
+    "pop-tarts-frosted-smores-16-count",
+    "cheez-it-original-family-size",
+    "cheez-it-white-cheddar-family-size",
+    "cheez-it-extra-toasty-family-size",
+    "cheez-it-extra-cheesy-family-size",
+    "cheez-it-snack-mix-classic-family-size",
+    "cheez-it-hot-and-spicy-family-size",
+    "eggo-homestyle-waffles-24-count",
+    "eggo-buttermilk-waffles-24-count",
+    "eggo-blueberry-waffles-24-count",
+    "eggo-chocolatey-chip-waffles-24-count",
+    "rice-krispies-treats-original-16-count",
+  ],
+};

@@ -22,5 +22,6 @@
 ## Implementation Notes
 
 - This is a static site intended to work on GitHub Pages with no build step.
+- The primary target device is usually an iPad Pro. Design and test with that form factor and touch interaction as the main use case, while keeping pages responsive and usable on other devices.
 - Keep paths relative and browser-compatible.
 - Avoid introducing runtime dependencies or CDN requirements for core page functionality.

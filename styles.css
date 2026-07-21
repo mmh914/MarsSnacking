@@ -255,7 +255,7 @@ main {
 
 .brand-grid,
 .size-grid {
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 18px;
 }
 
@@ -282,6 +282,7 @@ main {
 }
 
 .item-card {
+  position: relative;
   padding: 14px 10px 12px;
   display: flex;
   flex-direction: column;
@@ -309,18 +310,50 @@ button.item-card {
 }
 
 .brand-card {
+  min-height: 300px;
+  background: var(--card);
+}
+
+.brand-card,
+.size-card {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-between;
-  min-height: 190px;
+  gap: 18px;
   border-color: var(--brand);
-  background: linear-gradient(135deg, var(--brand), var(--accent));
-  color: #ffffff;
+  border-top: 10px solid var(--brand);
+  text-align: center;
 }
 
 .size-card {
-  border-color: var(--brand);
-  border-top: 10px solid var(--brand);
+  min-height: 300px;
+}
+
+.navigation-thumbnail-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 190px;
+  min-height: 0;
+}
+
+.navigation-thumbnail {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.navigation-card-copy {
+  width: 100%;
+  min-width: 0;
+}
+
+.navigation-card-copy .card-title,
+.navigation-card-copy .card-subtitle {
+  overflow-wrap: anywhere;
 }
 
 .card-title {
@@ -754,7 +787,7 @@ dd {
   }
 
   .brand-card {
-    min-height: 150px;
+    min-height: 300px;
   }
 }
 
@@ -881,4 +914,100 @@ dd {
   .project-card {
     min-height: 190px;
   }
+}
+
+/* Shared Sales Sheet framework */
+.sheet-panel[hidden],
+.sheet-warning[hidden] {
+  display: none;
+}
+
+.sheet-warning {
+  margin: 16px 18px 0;
+  padding: 12px 16px;
+  border: 1px solid #c98600;
+  border-radius: 8px;
+  background: #fff4cf;
+  color: #624400;
+  font-weight: 700;
+}
+
+.sheet-message {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  max-width: 680px;
+  margin: clamp(36px, 10vh, 100px) auto;
+  padding: 28px;
+  border: 1px solid var(--card-line);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--ink);
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.sheet-message-error {
+  border-color: #c8102e;
+}
+
+.retry-button {
+  min-height: 44px;
+  padding: 10px 22px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--blue);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.status-badge {
+  width: fit-content;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #5d6570;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.lto-flag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: #c8102e;
+  color: #ffffff;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.22);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+.status-coming-soon {
+  background: #8a5a00;
+}
+
+.status-inactive,
+.status-discontinued {
+  background: #8b1e2d;
+}
+
+.expanded-card > .status-badge {
+  justify-self: center;
+  font-size: 0.85rem;
+}
+
+.dark-mode .sheet-warning {
+  border-color: #d7a32b;
+  background: #4b390f;
+  color: #ffe8a3;
 }

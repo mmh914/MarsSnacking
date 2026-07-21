@@ -89,13 +89,19 @@
       ? renderBarcodeSvg(item.upc)
       : `<div class="missing-image">Invalid UPC</div>`;
     const safeName = escapeHtml(item.name);
+    const status = item.status && item.status !== "active" ? String(item.status) : "";
+    const safeStatus = escapeHtml(status.replace(/-/g, " "));
+    const isLimitedTimeOffering = item.isLimitedTimeOffering === true;
+    const cardLabel = `Expand barcode for ${safeName}${isLimitedTimeOffering ? ", limited time offering" : ""}`;
 
     return `
-      <article class="item-card archive-card" tabindex="0" role="button" data-item-index="${index}" aria-label="Expand barcode for ${safeName}">
+      <article class="item-card archive-card" tabindex="0" role="button" data-item-index="${index}" aria-label="${cardLabel}">
+        ${isLimitedTimeOffering ? `<div class="lto-flag" title="Limited time offering">LTO</div>` : ""}
         <div class="item-image-wrap">
           ${itemImageMarkup(item, "item-image")}
         </div>
         <p class="item-name">${safeName}</p>
+        ${status ? `<div class="status-badge status-${escapeHtml(status)}">${safeStatus}</div>` : ""}
         ${barcode}
         <div class="upc-text">${formatUpc(item.upc)}</div>
         <div class="meta">${valid ? "" : "Check digit warning"}</div>
@@ -109,6 +115,7 @@
     const name = document.getElementById("expandedName");
     const barcode = document.getElementById("expandedBarcode");
     const upc = document.getElementById("expandedUpc");
+    const status = document.getElementById("expandedStatus");
 
     if (!modal || !image || !name || !barcode || !upc) return;
 
@@ -118,6 +125,12 @@
       ? renderBarcodeSvg(item.upc)
       : `<div class="missing-image">Invalid UPC</div>`;
     upc.textContent = formatUpc(item.upc);
+    if (status) {
+      const lifecycleStatus = item.status && item.status !== "active" ? String(item.status) : "";
+      status.textContent = lifecycleStatus.replace(/-/g, " ");
+      status.hidden = !lifecycleStatus;
+      status.className = lifecycleStatus ? `status-badge status-${lifecycleStatus}` : "status-badge";
+    }
     modal.hidden = false;
     document.body.classList.add("modal-open");
     document.getElementById("closeModal")?.focus();

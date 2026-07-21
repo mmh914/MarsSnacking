@@ -1,99 +1,59 @@
 # Mars Snacking Tools
 
-A small static-site hub for separate Mars Snacking project pages. The repository root keeps the standard `index.html` entry point for GitHub Pages, and each project lives in its own folder with a descriptive HTML file name.
+A dependency-free static-site hub for Mars Snacking selling tools. The repository root is the GitHub Pages entry point, and each tool has a descriptive direct URL.
 
 ## Pages
 
-- `index.html` - umbrella splash page / tool hub.
-- `LTOsheet/lto-barcode-archive.html` - Limited Time Offer barcode archive.
-- `BTS2026/back-to-school-selling-sheet.html` - Back-to-School 2026 selling sheet.
+- `index.html` — site home and tool hub.
+- `LTOsheet/lto-barcode-archive.html` — Limited Time Offer barcode archive.
+- `BTS2026/back-to-school-selling-sheet.html` — Back-to-School 2026 Sales Sheet.
 
-## Naming convention
+## Product catalog
 
-For static websites, `index.html` is conventionally the default page for a folder. It is normal to keep one at the repository root so visiting the published site opens a home page automatically.
+`product-catalog-data/product-catalog.json` is the only source for product names, brands, package sizes, size groups, UPCs, Walmart item numbers, images, and lifecycle status. Add or correct product information there before referencing it from another page. Image paths are repository-relative, such as `product-catalog-data/images/example.png`.
 
-For separate projects under the same umbrella, use descriptive file names for each project's entry page, such as `lto-barcode-archive.html` or `back-to-school-selling-sheet.html`. That avoids having several open editor tabs all named `index.html` while still keeping each project grouped with its own assets.
+## Sales Sheet framework
 
-## Back-to-School Selling Sheet
+Sales Sheets use the shared controller in `shared/sales-sheet.js`, the shared barcode cards in `shared/barcode-cards.js`, and the root `styles.css`. They follow the fixed navigation flow:
 
-The Back-to-School tool is a static, browser-based selling tool for GitHub Pages. It uses plain HTML, CSS, and JavaScript, loads product data immediately, and keeps navigation state in the browser for instant Brand -> Size -> Item switching.
+`Brand → Size Group → Item Cards`
 
-### Files
+The catalog is requested once when a sheet opens. The controller resolves the fixed product list and creates all Brand, Size Group, and item panels immediately. Moving between panels does not fetch or rebuild product data.
 
-- `BTS2026/back-to-school-selling-sheet.html` - single-page app shell.
-- `styles.css` - shared styling for the project pages.
-- `BTS2026/app.js` - DOM rendering, navigation state, and barcode hookup.
-- `BTS2026/products.js` - editable product data for brands, sizes, items, UPCs, Walmart item numbers, and order quantities.
-- `BTS2026/assets/products/` - place final product images here.
-- `BTS2026/upc-barcode.js` - local dependency-free UPC-A SVG barcode renderer.
+### Defining a sheet
 
-### Editing product data
-
-Open `BTS2026/products.js` and update the `window.PRODUCT_DATA` object. The structure is:
+Each Sales Sheet has a small definition loaded before the shared controller:
 
 ```js
-{
-  displayTypes: {
-    sidekick: 'Sidekick',
-    halfEndcap: 'Half Endcap',
-    endcap: 'Endcap',
-    halfPallet: 'Half Pallet',
-    fullPallet: 'Full Pallet'
-  },
-  brands: [
-    {
-      id: 'pop-tarts',
-      name: 'Pop-Tarts',
-      color: '#ed1c24',
-      accent: '#00a3e0',
-      sizes: [
-        {
-          id: '12ct',
-          label: '12 ct Toaster Pastries',
-          items: [
-            {
-              id: 'pt-strawberry-12ct',
-              name: 'Frosted Strawberry Value Pack',
-              image: 'assets/products/pt-strawberry-12ct.png',
-              upc: '038000222034',
-              walmartItemNumber: 'WM-PT-1201',
-              orderSuggestions: { halfEndcap: 24, endcap: 48 }
-            }
-          ]
-        }
-      ]
-    }
+window.SALES_SHEET = {
+  id: "back-to-school-2026",
+  title: "Back-to-School Selling Sheet",
+  eyebrow: "Mars Snacking • Back-to-School",
+  productIds: [
+    "back-to-school-cheez-it-10-pack",
+    "back-to-school-pringles-snack-stacks-27-pack"
   ]
-}
+};
 ```
 
-Each item can include only the display types that apply. For example, if Pop-Tarts should not have pallet recommendations, omit `halfPallet` and `fullPallet` from that item's `orderSuggestions`.
+Only catalog IDs belong in `productIds`. Their order establishes selling priority: item cards retain definition order, brands follow first appearance, and size groups use the catalog's `sizeGroup.sortOrder`. Duplicate definition IDs are ignored with a warning. Missing or non-unique catalog IDs are omitted and reported visibly.
 
-### Product images
+Inactive and discontinued products remain on explicitly configured sheets and receive a lifecycle badge.
 
-Put real product images in `BTS2026/assets/products/`, then update each item's `image` path in `BTS2026/products.js`. The sample data already includes placeholder paths and comments where final filenames should go. If an image is missing, the app shows a neutral "Product image coming soon" placeholder.
+### Adding another Sales Sheet
 
-Recommended image format: transparent PNG or optimized JPG/WebP, sized roughly 800px wide or smaller for quick iPad loading.
+1. Add and validate every product in the master catalog.
+2. Create a folder containing a definition file and an HTML shell based on the BTS page.
+3. Set the shell's relative `data-catalog-url` and `data-home-url` paths.
+4. Load the definition, `shared/barcode-cards.js`, and `shared/sales-sheet.js` in that order.
+5. Add a direct project card to `index.html`.
 
-### UPCs and Walmart item numbers
+Do not create page-specific product records, barcode generators, stylesheets, or navigation controllers.
 
-Update each item's:
+## Back-to-School 2026
 
-- `upc` with the final 12-digit UPC-A value.
-- `walmartItemNumber` with the final Walmart item number.
+The BTS definition is `BTS2026/sales-sheet-definition.js`. It currently references the two Back-to-School products present in the master catalog. Future BTS products must be added to the catalog before their IDs are added to this definition.
 
-The barcode is generated in the browser from the `upc` value in `BTS2026/products.js`.
+## Local testing and deployment
 
-### Barcode library
-
-Barcode rendering uses the local script `BTS2026/upc-barcode.js`. It is a small dependency-free UPC-A SVG barcode renderer included in this repository, so the app does not depend on a remote CDN at runtime.
-
-## Deploying with GitHub Pages
-
-1. Commit these files to the repository.
-2. Push the branch to GitHub.
-3. In GitHub, open **Settings -> Pages**.
-4. Set the source to the branch and repository root folder that contain `index.html`.
-5. Save. GitHub Pages will publish the splash page first, with links to the project pages.
-
-No build step, server, or backend is required.
+Because browsers restrict `fetch()` from `file:` URLs, serve the repository over HTTP for local testing, for example with `python -m http.server`. GitHub Pages requires no build step or runtime dependency: commit the files, push the branch, and publish from the repository root.
