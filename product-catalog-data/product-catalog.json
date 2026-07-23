@@ -1,4 +1,4 @@
-{
+﻿{
   "$schema": "./product-catalog.schema.json",
   "catalogVersion": 1,
   "lastUpdated": "2026-07-21",
@@ -24,11 +24,7 @@
       "isLimitedTimeOffering": false,
       "dateAdded": "2026-07-15",
       "lastUpdated": "2026-07-16",
-      "tags": [
-        "crackers",
-        "snacking",
-        "cheese"
-      ]
+      "tags": ["crackers", "snacking", "cheese"]
     },
     {
       "id": "cheez-it-original-lto",
@@ -51,12 +47,7 @@
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
       "lastUpdated": "2026-07-16",
-      "tags": [
-        "crackers",
-        "snacking",
-        "cheese",
-        "lto"
-      ]
+      "tags": ["crackers", "snacking", "cheese", "lto"]
     },
     {
       "id": "town-house-dippers-original",
@@ -79,12 +70,7 @@
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
       "lastUpdated": "2026-07-16",
-      "tags": [
-        "crackers",
-        "snacking",
-        "dippers",
-        "lto"
-      ]
+      "tags": ["crackers", "snacking", "dippers", "lto"]
     },
     {
       "id": "cheez-it-loaded-baconator-12-4oz",
@@ -107,13 +93,7 @@
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
       "lastUpdated": "2026-07-16",
-      "tags": [
-        "crackers",
-        "snacking",
-        "cheese",
-        "baconator",
-        "lto"
-      ]
+      "tags": ["crackers", "snacking", "cheese", "baconator", "lto"]
     },
     {
       "id": "cheez-it-hot-honey",
@@ -136,13 +116,7 @@
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
       "lastUpdated": "2026-07-16",
-      "tags": [
-        "crackers",
-        "snacking",
-        "cheese",
-        "hot honey",
-        "lto"
-      ]
+      "tags": ["crackers", "snacking", "cheese", "hot honey", "lto"]
     },
     {
       "id": "town-house-game-day-dippers-original",
@@ -165,13 +139,7 @@
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
       "lastUpdated": "2026-07-16",
-      "tags": [
-        "crackers",
-        "snacking",
-        "dippers",
-        "game day",
-        "lto"
-      ]
+      "tags": ["crackers", "snacking", "dippers", "game day", "lto"]
     },
     {
       "id": "zesta-minis-restaurant-style",
@@ -194,13 +162,7 @@
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
       "lastUpdated": "2026-07-16",
-      "tags": [
-        "crackers",
-        "snacking",
-        "zesta",
-        "minis",
-        "lto"
-      ]
+      "tags": ["crackers", "snacking", "zesta", "minis", "lto"]
     },
     {
       "id": "zesta-oyster-crackers",
@@ -223,13 +185,7 @@
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
       "lastUpdated": "2026-07-16",
-      "tags": [
-        "crackers",
-        "snacking",
-        "zesta",
-        "oyster crackers",
-        "lto"
-      ]
+      "tags": ["crackers", "snacking", "zesta", "oyster crackers", "lto"]
     },
     {
       "id": "club-minis-cinnamon-sugar",
@@ -252,13 +208,7 @@
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
       "lastUpdated": "2026-07-16",
-      "tags": [
-        "crackers",
-        "snacking",
-        "cinnamon sugar",
-        "minis",
-        "lto"
-      ]
+      "tags": ["crackers", "snacking", "cinnamon sugar", "minis", "lto"]
     },
     {
       "id": "cracker-assortment-8-pack",
@@ -281,13 +231,7 @@
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
       "lastUpdated": "2026-07-16",
-      "tags": [
-        "crackers",
-        "snacking",
-        "assortment",
-        "multipack",
-        "lto"
-      ]
+      "tags": ["crackers", "snacking", "assortment", "multipack", "lto"]
     },
     {
       "id": "pringles-mingles-cinnamon-sugar",
@@ -310,13 +254,7 @@
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
       "lastUpdated": "2026-07-16",
-      "tags": [
-        "snacking",
-        "pringles",
-        "mingles",
-        "cinnamon sugar",
-        "lto"
-      ]
+      "tags": ["snacking", "pringles", "mingles", "cinnamon sugar", "lto"]
     },
     {
       "id": "town-house-holiday-dippers-original",
@@ -339,13 +277,7 @@
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
       "lastUpdated": "2026-07-16",
-      "tags": [
-        "crackers",
-        "snacking",
-        "dippers",
-        "holiday",
-        "lto"
-      ]
+      "tags": ["crackers", "snacking", "dippers", "holiday", "lto"]
     },
     {
       "id": "pringles-mingles-10-pack",
@@ -368,13 +300,7 @@
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
       "lastUpdated": "2026-07-16",
-      "tags": [
-        "snacking",
-        "pringles",
-        "mingles",
-        "multipack",
-        "lto"
-      ]
+      "tags": ["snacking", "pringles", "mingles", "multipack", "lto"]
     },
     {
       "id": "back-to-school-cheez-it-10-pack",
@@ -487,13 +413,7 @@
       "isLimitedTimeOffering": true,
       "dateAdded": "2026-07-15",
       "lastUpdated": "2026-07-16",
-      "tags": [
-        "snacking",
-        "pringles",
-        "snack stacks",
-        "multipack",
-        "lto"
-      ]
+      "tags": ["snacking", "pringles", "snack stacks", "multipack", "lto"]
     },
     {
       "id": "pop-tarts-frosted-strawberry-16-count",
@@ -933,6 +853,29 @@
         "back to school",
         "16 count"
       ]
+    },
+    {
+      "id": "pop-tarts-frosted-pumpkin-pie-16-count",
+      "brand": "Pop-Tarts",
+      "name": "Pop-Tarts Frosted Pumpkin Pie 16 Count",
+      "description": "Pop-Tarts Frosted Pumpkin Pie 16 Count",
+      "size": {
+        "value": 16,
+        "unit": "ct"
+      },
+      "sizeGroup": {
+        "id": "16-count",
+        "label": "16-Count",
+        "sortOrder": 40
+      },
+      "upc": "038000281266",
+      "walmartItemNumber": "0",
+      "image": "product-catalog-data/images/pop-tarts-frosted-pumpkin-pie-16-count.png",
+      "status": "active",
+      "isLimitedTimeOffering": true,
+      "dateAdded": "2026-07-22",
+      "lastUpdated": "2026-07-22",
+      "tags": ["seasonal", "back to school", "16 count"]
     }
   ]
 }
