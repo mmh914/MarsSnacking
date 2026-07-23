@@ -4,13 +4,29 @@
   const RIGHT_GUARD = "101";
 
   const L_CODES = {
-    "0": "0001101", "1": "0011001", "2": "0010011", "3": "0111101", "4": "0100011",
-    "5": "0110001", "6": "0101111", "7": "0111011", "8": "0110111", "9": "0001011"
+    0: "0001101",
+    1: "0011001",
+    2: "0010011",
+    3: "0111101",
+    4: "0100011",
+    5: "0110001",
+    6: "0101111",
+    7: "0111011",
+    8: "0110111",
+    9: "0001011",
   };
 
   const R_CODES = {
-    "0": "1110010", "1": "1100110", "2": "1101100", "3": "1000010", "4": "1011100",
-    "5": "1001110", "6": "1010000", "7": "1000100", "8": "1001000", "9": "1110100"
+    0: "1110010",
+    1: "1100110",
+    2: "1101100",
+    3: "1000010",
+    4: "1011100",
+    5: "1001110",
+    6: "1010000",
+    7: "1000100",
+    8: "1001000",
+    9: "1110100",
   };
 
   function cleanUpc(upc) {
@@ -22,15 +38,27 @@
     if (!/^\d{12}$/.test(digits)) return false;
     const body = digits.slice(0, 11).split("").map(Number);
     const check = Number(digits[11]);
-    const sum = body.reduce((total, digit, index) => total + digit * (index % 2 === 0 ? 3 : 1), 0);
+    const sum = body.reduce(
+      (total, digit, index) => total + digit * (index % 2 === 0 ? 3 : 1),
+      0,
+    );
     return (10 - (sum % 10)) % 10 === check;
   }
 
   function upcToBits(upc) {
     const digits = cleanUpc(upc);
-    if (!/^\d{12}$/.test(digits)) throw new Error(`UPC must be 12 digits: ${upc}`);
-    const left = digits.slice(0, 6).split("").map((d) => L_CODES[d]).join("");
-    const right = digits.slice(6).split("").map((d) => R_CODES[d]).join("");
+    if (!/^\d{12}$/.test(digits))
+      throw new Error(`UPC must be 12 digits: ${upc}`);
+    const left = digits
+      .slice(0, 6)
+      .split("")
+      .map((d) => L_CODES[d])
+      .join("");
+    const right = digits
+      .slice(6)
+      .split("")
+      .map((d) => R_CODES[d])
+      .join("");
     return LEFT_GUARD + left + CENTER_GUARD + right + RIGHT_GUARD;
   }
 
@@ -62,7 +90,9 @@
 
   function formatUpc(upc) {
     const d = cleanUpc(upc);
-    return d.length === 12 ? `${d[0]} ${d.slice(1, 6)} ${d.slice(6, 11)} ${d[11]}` : upc;
+    return d.length === 12
+      ? `${d[0]} ${d.slice(1, 6)} ${d.slice(6, 11)} ${d[11]}`
+      : upc;
   }
 
   function escapeHtml(value) {
@@ -89,7 +119,8 @@
       ? renderBarcodeSvg(item.upc)
       : `<div class="missing-image">Invalid UPC</div>`;
     const safeName = escapeHtml(item.name);
-    const status = item.status && item.status !== "active" ? String(item.status) : "";
+    const status =
+      item.status && item.status !== "active" ? String(item.status) : "";
     const safeStatus = escapeHtml(status.replace(/-/g, " "));
     const isLimitedTimeOffering = item.isLimitedTimeOffering === true;
     const cardLabel = `Expand barcode for ${safeName}${isLimitedTimeOffering ? ", limited time offering" : ""}`;
@@ -126,10 +157,13 @@
       : `<div class="missing-image">Invalid UPC</div>`;
     upc.textContent = formatUpc(item.upc);
     if (status) {
-      const lifecycleStatus = item.status && item.status !== "active" ? String(item.status) : "";
+      const lifecycleStatus =
+        item.status && item.status !== "active" ? String(item.status) : "";
       status.textContent = lifecycleStatus.replace(/-/g, " ");
       status.hidden = !lifecycleStatus;
-      status.className = lifecycleStatus ? `status-badge status-${lifecycleStatus}` : "status-badge";
+      status.className = lifecycleStatus
+        ? `status-badge status-${lifecycleStatus}`
+        : "status-badge";
     }
     modal.hidden = false;
     document.body.classList.add("modal-open");
@@ -145,7 +179,8 @@
 
   function bindArchiveCards(container, items) {
     container.querySelectorAll(".archive-card").forEach((card) => {
-      const openCard = () => openExpandedCard(items[Number(card.dataset.itemIndex)]);
+      const openCard = () =>
+        openExpandedCard(items[Number(card.dataset.itemIndex)]);
       card.addEventListener("click", openCard);
       card.addEventListener("keydown", (event) => {
         if (event.key === "Enter" || event.key === " ") {
@@ -157,8 +192,12 @@
   }
 
   function wireModal() {
-    document.getElementById("closeModal")?.addEventListener("click", closeExpandedCard);
-    document.querySelector(".modal-backdrop")?.addEventListener("click", closeExpandedCard);
+    document
+      .getElementById("closeModal")
+      ?.addEventListener("click", closeExpandedCard);
+    document
+      .querySelector(".modal-backdrop")
+      ?.addEventListener("click", closeExpandedCard);
     document.addEventListener("keydown", (event) => {
       const modal = document.getElementById("barcodeModal");
       if (event.key === "Escape" && modal && !modal.hidden) {
@@ -185,7 +224,7 @@
 
   function syncBarcodeToggleLabel(button, isNormal) {
     button.setAttribute("aria-pressed", String(isNormal));
-    button.textContent = isNormal ? "Use inverted barcodes" : "Use normal barcodes";
+    button.textContent = isNormal ? "Invert barcodes" : "Invert barcodes";
   }
 
   function wireBarcodeInvertToggle() {
@@ -198,12 +237,20 @@
     button.type = "button";
 
     const isNormal = getBarcodeColorMode() === "normal";
-    document.documentElement.classList.toggle("barcode-normal-barcodes", isNormal);
+    document.documentElement.classList.toggle(
+      "barcode-normal-barcodes",
+      isNormal,
+    );
     syncBarcodeToggleLabel(button, isNormal);
 
     button.addEventListener("click", () => {
-      const nextIsNormal = !document.documentElement.classList.contains("barcode-normal-barcodes");
-      document.documentElement.classList.toggle("barcode-normal-barcodes", nextIsNormal);
+      const nextIsNormal = !document.documentElement.classList.contains(
+        "barcode-normal-barcodes",
+      );
+      document.documentElement.classList.toggle(
+        "barcode-normal-barcodes",
+        nextIsNormal,
+      );
       setBarcodeColorMode(nextIsNormal ? "normal" : "inverted");
       syncBarcodeToggleLabel(button, nextIsNormal);
     });
@@ -225,7 +272,9 @@
 
   syncDarkModeClass();
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", wireBarcodeInvertToggle, { once: true });
+    document.addEventListener("DOMContentLoaded", wireBarcodeInvertToggle, {
+      once: true,
+    });
   } else {
     wireBarcodeInvertToggle();
   }
@@ -240,6 +289,6 @@
     closeExpandedCard,
     bindArchiveCards,
     wireBarcodeInvertToggle,
-    wireModal
+    wireModal,
   };
-}());
+})();
